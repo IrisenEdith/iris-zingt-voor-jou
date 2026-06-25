@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IRIS | Verhalen in Muziek</title>
+<meta name="description" content="IRIS - Muziek die raakt, verhalen die blijven. Van hart tot hart."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif:wght@400;500;600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#f3bc78",
+        "on-primary": "#462a00",
+        "primary-container": "#c59353",
+        "secondary": "#fbba67",
+        "background": "#131313",
+        "surface": "#131313",
+        "surface-container-lowest": "#0e0e0e",
+        "surface-container-low": "#1c1b1b",
+        "surface-container": "#201f1f",
+        "surface-container-high": "#2a2a2a",
+        "surface-container-highest": "#353534",
+        "surface-variant": "#353534",
+        "surface-bright": "#3a3939",
+        "on-surface": "#e5e2e1",
+        "on-surface-variant": "#d4c4b4",
+        "outline": "#9c8e80",
+        "outline-variant": "#504539",
+      },
+      fontFamily: {
+        "serif": ["Cormorant Garamond", "Noto Serif", "serif"],
+        "sans": ["Manrope", "system-ui", "sans-serif"],
+      },
+    }
+  }
+}
+</script>
+<style>
+  body {
+    background-color: #131313;
+    color: #e5e2e1;
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .glass {
+    background: rgba(19,19,19,0.80);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .gold-glow { box-shadow: 0 0 30px rgba(243,188,120,0.15); }
+  .text-glow { text-shadow: 0 0 20px rgba(243,188,120,0.25); }
+  .hero-bg {
+    position: relative;
+    background-color: #0a0806;
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 82% 40%;
+    filter: sepia(35%) saturate(130%) hue-rotate(-10deg) brightness(0.90);
+  }
+  .hero-overlay {
+    background:
+      linear-gradient(to right, rgba(10,8,6,0.93) 0%, rgba(10,8,6,0.55) 50%, rgba(10,8,6,0.70) 100%),
+      linear-gradient(to top, #131313 0%, transparent 18%);
+  }
+  .hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 280px;
+    background: linear-gradient(to top, #131313 0%, #131313 15%, transparent 100%);
+    z-index: 3;
+    pointer-events: none;
+  }
+  @media (max-width: 1023px) {
+    .hero-overlay {
+      background:
+        linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.55) 55%, rgba(10,8,6,0.15) 100%),
+        linear-gradient(to top, #131313 0%, transparent 12%);
+    }
+    .hero-photo { object-position: 65% top; }
+  }
+  .music-card-img { transition: transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+  .music-card:hover .music-card-img { transform: scale(1.08); }
+  .music-card:hover .play-circle { background: #f3bc78; color: #462a00; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .page { display: none; }
+  .page.active { display: block; }
+  .nav-link { position: relative; }
+  .nav-link.active-nav { color: #f3bc78; }
+  .nav-link.active-nav::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: #f3bc78; }
+  .audio-dock { transform: translateY(120%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+  .audio-dock.visible { transform: translateY(0); }
+  .drawer { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+  .drawer.open { transform: translateX(0); }
+  .gallery-img { transition: transform 0.6s ease; }
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #131313; }
+  ::-webkit-scrollbar-thumb { background: #504539; border-radius: 10px; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+</style>
+</head>
+<body class="pb-28">
+
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 glass border-b border-outline-variant/20 h-20 flex items-center justify-between px-6 lg:px-16">
+  <button class="lg:hidden text-primary" onclick="toggleDrawer()" aria-label="Menu">
+    <span class="material-symbols-outlined text-3xl">menu</span>
+  </button>
+
+  <a class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+    <svg width="36" height="44" viewBox="0 0 36 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Stem -->
+      <line x1="18" y1="44" x2="18" y2="22" stroke="#f3bc78" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Left leaf -->
+      <path d="M18 34 C12 30 8 24 10 18 C13 22 16 28 18 34Z" fill="#f3bc78" opacity="0.5"/>
+      <!-- Right leaf -->
+      <path d="M18 34 C24 30 28 24 26 18 C23 22 20 28 18 34Z" fill="#f3bc78" opacity="0.5"/>
+      <!-- Center petal (upright) -->
+      <path d="M18 22 C15 16 14 10 18 4 C22 10 21 16 18 22Z" fill="#f3bc78"/>
+      <!-- Left outer petal (drooping) -->
+      <path d="M18 20 C13 17 7 15 4 10 C8 9 14 13 18 20Z" fill="#f3bc78" opacity="0.85"/>
+      <!-- Right outer petal (drooping) -->
+      <path d="M18 20 C23 17 29 15 32 10 C28 9 22 13 18 20Z" fill="#f3bc78" opacity="0.85"/>
+      <!-- Left inner petal -->
+      <path d="M18 20 C15 15 13 10 15 6 C17 9 18 14 18 20Z" fill="#f3bc78" opacity="0.6"/>
+      <!-- Right inner petal -->
+      <path d="M18 20 C21 15 23 10 21 6 C19 9 18 14 18 20Z" fill="#f3bc78" opacity="0.6"/>
+    </svg>
+    <span class="font-serif text-2xl text-primary tracking-widest font-semibold text-glow">IRIS</span>
+  </a>
+
+  <!-- Desktop Nav -->
+  <nav class="hidden lg:flex items-center gap-8">
+    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('home')" data-page="home">Home</a>
+    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('muziek')" data-page="muziek">Muziek</a>
+    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('gallery')" data-page="gallery">Gallery</a>
+    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('bio')" data-page="bio">Bio</a>
+    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('contact')" data-page="contact">Contact</a>
+  </nav>
+
+  <!-- Social Icons Desktop -->
+  <div class="hidden lg:flex items-center gap-5 text-on-surface-variant">
+    <a href="#" aria-label="Instagram" class="hover:text-primary transition-colors">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#" aria-label="TikTok" class="hover:text-primary transition-colors">
+      <svg width="18" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube" class="hover:text-primary transition-colors">
+      <svg width="22" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+    </a>
+    <a href="#" aria-label="Spotify" class="hover:text-primary transition-colors">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.44c-.2.32-.63.42-.95.21-2.59-1.58-5.86-1.94-9.7-1.06-.37.09-.74-.14-.83-.51-.09-.37.14-.74.51-.83 4.21-.96 7.83-.55 10.75 1.23.32.2.42.63.22.96zm1.24-2.76c-.25.4-.78.53-1.18.28-2.97-1.83-7.49-2.36-11.01-1.29-.46.14-.94-.12-1.08-.58-.14-.46.12-.94.58-1.08 4.02-1.22 9.01-.63 12.43 1.48.4.25.52.78.26 1.19zm.11-2.88c-3.56-2.11-9.43-2.31-12.83-1.28-.54.16-1.12-.15-1.28-.69-.16-.54.15-1.12.69-1.28 3.9-1.18 10.38-.95 14.47 1.48.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/></svg>
+    </a>
+    <a href="mailto:duym.iris@gmail.com" aria-label="Email" class="hover:text-primary transition-colors">
+      <svg width="20" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+    </a>
+  </div>
+
+  <!-- Mobile: just search icon -->
+  <button class="lg:hidden text-on-surface-variant hover:text-primary transition-colors" aria-label="Zoeken">
+    <span class="material-symbols-outlined">search</span>
+  </button>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="drawer fixed inset-y-0 left-0 z-[60] w-72 bg-surface-container-lowest border-r border-outline-variant/20 flex flex-col p-8 shadow-2xl" id="drawer">
+  <div class="flex justify-between items-center mb-12">
+    <span class="font-serif text-2xl text-primary tracking-widest">IRIS</span>
+    <button onclick="toggleDrawer()" class="text-on-surface-variant"><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <nav class="flex flex-col gap-7">
+    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('home')"><span class="material-symbols-outlined text-primary">home</span>Home</a>
+    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('muziek')"><span class="material-symbols-outlined text-primary">album</span>Muziek</a>
+    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('gallery')"><span class="material-symbols-outlined text-primary">photo_library</span>Gallery</a>
+    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('bio')"><span class="material-symbols-outlined text-primary">person</span>Bio</a>
+    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('contact')"><span class="material-symbols-outlined text-primary">mail</span>Contact</a>
+  </nav>
+  <div class="mt-auto flex gap-5 text-on-surface-variant">
+    <a href="#" class="hover:text-primary transition-colors" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" class="hover:text-primary transition-colors" aria-label="TikTok"><svg width="18" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.24 8.24 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg></a>
+    <a href="#" class="hover:text-primary transition-colors" aria-label="YouTube"><svg width="22" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
+    <a href="#" class="hover:text-primary transition-colors" aria-label="Spotify"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.44c-.2.32-.63.42-.95.21-2.59-1.58-5.86-1.94-9.7-1.06-.37.09-.74-.14-.83-.51-.09-.37.14-.74.51-.83 4.21-.96 7.83-.55 10.75 1.23.32.2.42.63.22.96zm1.24-2.76c-.25.4-.78.53-1.18.28-2.97-1.83-7.49-2.36-11.01-1.29-.46.14-.94-.12-1.08-.58-.14-.46.12-.94.58-1.08 4.02-1.22 9.01-.63 12.43 1.48.4.25.52.78.26 1.19zm.11-2.88c-3.56-2.11-9.43-2.31-12.83-1.28-.54.16-1.12-.15-1.28-.69-.16-.54.15-1.12.69-1.28 3.9-1.18 10.38-.95 14.47 1.48.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/></svg></a>
+  </div>
+</div>
+<div class="fixed inset-0 z-[55] bg-black/50 hidden" id="drawer-overlay" onclick="toggleDrawer()"></div>
+
+<!-- PAGES -->
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <section class="hero-bg relative w-full h-screen flex items-end lg:items-center overflow-hidden">
+    <img src="assets/hero-malta-sunset.png" alt="" class="hero-photo" aria-hidden="true"/>
+    <div class="hero-overlay absolute inset-0"></div>
+    <div class="hero-bottom-fade"></div>
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pb-20 lg:pb-0">
+      <p class="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-5">Welkom bij Iris</p>
+      <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] mb-6 text-on-surface">
+        Jouw liefde.<br/>Mijn thuis.<br/>Ons verhaal.
+      </h1>
+      <div class="w-12 h-[2px] bg-primary mb-6"></div>
+      <p class="text-on-surface-variant text-lg mb-10 max-w-md">Muziek die raakt, verhalen die blijven.<br/>Van hart tot hart.</p>
+      <button onclick="playSong('jij-bent-mijn-thuis')" class="inline-flex items-center gap-3 bg-primary text-on-primary px-8 py-4 font-bold uppercase text-sm tracking-widest gold-glow hover:brightness-110 transition-all active:scale-95 rounded-sm">
+        <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+        Luister nu
+      </button>
+    </div>
+  </section>
+
+  <!-- Uitgelicht: Dit ben ik -->
+  <section class="py-24 bg-surface-container-lowest reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <!-- Cover + play -->
+        <div class="relative group cursor-pointer" onclick="playSong('dit-ben-ik')">
+          <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+            <img src="assets/dit ben ik.png" alt="Dit ben ik - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700"/>
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center gold-glow">
+                <span class="material-symbols-outlined text-5xl text-on-primary" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-primary/40 rounded-br-2xl hidden lg:block"></div>
+        </div>
+        <!-- Tekst -->
+        <div>
+          <span class="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Eerste single</span>
+          <h2 class="font-serif text-5xl lg:text-6xl text-on-surface mb-8 leading-tight">Dit ben ik.</h2>
+          <div class="space-y-5 text-on-surface-variant text-lg leading-relaxed">
+            <p>Sommige eerste nummers vertellen een verhaal. Andere stellen een vraag. <span class="text-on-surface font-medium">"Dit ben ik"</span> doet iets anders: het stelt zich voor.</p>
+            <p>Deze single is een muzikale kennismaking met IRIS. Geen masker, geen rol, een eerlijke blik op wie ik ben en wat mij inspireert. Een nummer over jezelf durven zijn, ook wanneer het leven je uitdaagt om je te verstoppen.</p>
+            <p class="italic text-on-surface border-l-2 border-primary/40 pl-5">Elke volgende compositie zal een nieuw hoofdstuk vertellen, maar hier begint alles.</p>
+            <p>Welkom in mijn wereld. Welkom bij IRIS.</p>
+          </div>
+          <div class="mt-10 flex flex-col sm:flex-row gap-4">
+            <button onclick="playSong('dit-ben-ik')" class="inline-flex items-center gap-3 bg-primary text-on-primary px-8 py-4 font-bold uppercase text-sm tracking-widest gold-glow hover:brightness-110 transition-all active:scale-95 rounded-sm">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+              Luister nu
+            </button>
+            <button onclick="showPage('muziek')" class="inline-flex items-center gap-3 border border-primary/40 text-primary px-8 py-4 font-bold uppercase text-sm tracking-widest hover:border-primary hover:bg-primary/5 transition-all rounded-sm">
+              Alle muziek
+            </button>
+          </div>
+          <!-- Streaming links placeholder -->
+          <div class="mt-8 flex items-center gap-4 text-on-surface-variant/50">
+            <span class="text-xs uppercase tracking-widest">Ook te vinden op</span>
+            <div class="flex gap-4 text-on-surface-variant">
+              <a href="#" class="hover:text-primary transition-colors" aria-label="Spotify"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.44c-.2.32-.63.42-.95.21-2.59-1.58-5.86-1.94-9.7-1.06-.37.09-.74-.14-.83-.51-.09-.37.14-.74.51-.83 4.21-.96 7.83-.55 10.75 1.23.32.2.42.63.22.96zm1.24-2.76c-.25.4-.78.53-1.18.28-2.97-1.83-7.49-2.36-11.01-1.29-.46.14-.94-.12-1.08-.58-.14-.46.12-.94.58-1.08 4.02-1.22 9.01-.63 12.43 1.48.4.25.52.78.26 1.19zm.11-2.88c-3.56-2.11-9.43-2.31-12.83-1.28-.54.16-1.12-.15-1.28-.69-.16-.54.15-1.12.69-1.28 3.9-1.18 10.38-.95 14.47 1.48.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/></svg></a>
+              <a href="#" class="hover:text-primary transition-colors" aria-label="Apple Music"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 6.628l-12-2.628v13.8a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V9.628l9-2.028v8.4a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V5l4 .872z"/></svg></a>
+              <a href="#" class="hover:text-primary transition-colors" aria-label="YouTube"><svg width="20" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nieuwste Muziek -->
+  <section class="py-24 bg-background reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-4">
+            <span class="text-primary text-xs font-bold uppercase tracking-[0.25em]">NIEUWSTE MUZIEK</span>
+            <div class="h-px w-10 bg-primary/40"></div>
+          </div>
+          <h2 class="font-serif text-4xl lg:text-5xl text-on-surface">Luister naar mijn nieuwste nummers</h2>
+        </div>
+        <button onclick="showPage('muziek')" class="text-primary text-xs uppercase tracking-widest border border-primary/40 px-6 py-3 hover:border-primary hover:bg-primary/5 transition-all self-start rounded-sm">
+          Bekijk alle muziek →
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="home-music-grid"></div>
+    </div>
+  </section>
+
+  <!-- Bio teaser -->
+  <section class="py-24 bg-surface-container-lowest reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+        <div class="relative">
+          <img src="assets/iris-malta.jpg" alt="Iris Duym" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl"/>
+          <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
+        </div>
+        <div>
+          <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-5 block">De Storyteller</span>
+          <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mb-8 leading-tight">De magie van klank, de essentie van het moment.</h2>
+          <p class="text-on-surface-variant text-lg leading-relaxed mb-8">IRIS is een creatief muziekproject waarin verhalen, emotie en moderne technologie samenkomen. Achter IRIS staat Iris Duym, een verhalenverteller die thema's als liefde en zelfontdekking vertaalt naar unieke composities.</p>
+          <div class="h-px w-full bg-outline-variant/30 my-8"></div>
+          <p class="font-serif text-2xl text-on-surface italic leading-relaxed">"Muziek componeren is de kortste weg van mijn beleving naar jouw hart."</p>
+          <button onclick="showPage('bio')" class="mt-8 text-primary text-xs uppercase tracking-widest border-b border-primary/40 pb-1 hover:border-primary transition-all">Lees meer over Iris →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video -->
+  <section class="py-24 reveal">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="mb-10">
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-4 block">Visual Storytelling</span>
+        <h2 class="font-serif text-4xl lg:text-5xl text-on-surface">Live from the Coast</h2>
+      </div>
+      <div class="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer shadow-2xl" onclick="toggleVideo()">
+        <video class="w-full h-full object-cover" id="hero-video" poster="assets/video-poster.png" playsinline>
+          <source src="assets/iris-malta-motion.webm" type="video/webm"/>
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
+        <div class="absolute inset-0 flex items-center justify-center" id="video-play-overlay">
+          <div class="w-24 h-24 bg-primary/90 text-on-primary rounded-full flex items-center justify-center gold-glow group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-5xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+          </div>
+        </div>
+        <div class="absolute bottom-8 left-8">
+          <p class="font-serif text-2xl lg:text-3xl text-white mb-1">Live from the Coast</p>
+          <p class="text-white/60 text-xs uppercase tracking-widest">Malta Sessions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-28 px-6 lg:px-16 bg-primary/5 text-center reveal">
+    <div class="max-w-2xl mx-auto">
+      <span class="text-xs font-bold uppercase tracking-[0.25em] text-on-surface-variant/60 mb-5 block">Blijf dichtbij</span>
+      <h2 class="font-serif text-4xl lg:text-5xl text-primary mb-6 text-glow">Ontvang mijn verhalen</h2>
+      <p class="text-on-surface-variant text-lg mb-10">Schrijf je in voor de nieuwsbrief en ontvang als eerste updates over nieuwe composities en verhalen.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-primary font-serif text-xl\'>Bedankt! Je bent ingeschreven. ♡</p>'">
+        <input type="email" placeholder="Jouw e-mailadres" required class="flex-grow bg-surface-container border-b-2 border-primary/30 focus:border-primary text-on-surface px-5 py-4 outline-none transition-all rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none placeholder:text-on-surface-variant/40"/>
+        <button type="submit" class="bg-primary text-on-primary font-bold text-xs uppercase tracking-widest px-8 py-4 gold-glow hover:brightness-110 transition-all rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none">Inschrijven</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-lowest pt-20 pb-10 border-t border-outline-variant/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-12 mb-16">
+        <div class="text-center lg:text-left">
+          <div class="font-serif text-4xl text-on-surface mb-3 tracking-widest">IRIS</div>
+          <p class="text-on-surface-variant text-sm max-w-xs">Verhalen in Muziek. Voor jou.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-12 lg:gap-16">
+          <div class="flex flex-col gap-3">
+            <span class="text-primary text-xs uppercase tracking-[0.2em] font-bold">Volg mij</span>
+            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider">Instagram</a>
+            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider">TikTok</a>
+            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider">YouTube</a>
+            <a href="#" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider">Spotify</a>
+          </div>
+          <div class="flex flex-col gap-3">
+            <span class="text-primary text-xs uppercase tracking-[0.2em] font-bold">Navigatie</span>
+            <a onclick="showPage('muziek')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Muziek</a>
+            <a onclick="showPage('gallery')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Gallery</a>
+            <a onclick="showPage('bio')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Bio</a>
+            <a onclick="showPage('contact')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col lg:flex-row justify-between items-center pt-10 border-t border-outline-variant/10 gap-4">
+        <p class="text-on-surface-variant/40 text-xs uppercase tracking-widest">© 2026 IRIS STUDIO · Alle rechten voorbehouden</p>
+        <a href="mailto:duym.iris@gmail.com" class="text-primary/60 hover:text-primary text-xs transition-colors">duym.iris@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- MUZIEK -->
+<div class="page" id="page-muziek">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-5xl mx-auto min-h-screen">
+    <!-- Header -->
+    <div class="mb-16">
+      <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-3 block">Discografie</span>
+      <h2 class="font-serif text-5xl lg:text-6xl text-on-surface mb-4">Alle Composities</h2>
+      <p class="text-on-surface-variant text-lg max-w-xl">Verhalen in klank. Klik op een nummer om te luisteren, of zoek het op via je favoriete streamingplatform.</p>
+    </div>
+
+    <!-- Tracklist -->
+    <div class="space-y-2" id="tracklist"></div>
+
+    <!-- Streaming banner -->
+    <div class="mt-16 p-8 lg:p-12 bg-surface-container rounded-2xl border border-outline-variant/20 text-center">
+      <p class="text-on-surface-variant text-sm uppercase tracking-widest mb-3">Luister via je favoriete platform</p>
+      <h3 class="font-serif text-3xl text-on-surface mb-8">IRIS · Verhalen in Muziek</h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#" class="flex items-center gap-3 bg-surface-container-high hover:bg-primary hover:text-on-primary border border-outline-variant/30 hover:border-primary text-on-surface-variant px-6 py-3 rounded-full transition-all text-sm font-bold uppercase tracking-wider">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.44c-.2.32-.63.42-.95.21-2.59-1.58-5.86-1.94-9.7-1.06-.37.09-.74-.14-.83-.51-.09-.37.14-.74.51-.83 4.21-.96 7.83-.55 10.75 1.23.32.2.42.63.22.96zm1.24-2.76c-.25.4-.78.53-1.18.28-2.97-1.83-7.49-2.36-11.01-1.29-.46.14-.94-.12-1.08-.58-.14-.46.12-.94.58-1.08 4.02-1.22 9.01-.63 12.43 1.48.4.25.52.78.26 1.19zm.11-2.88c-3.56-2.11-9.43-2.31-12.83-1.28-.54.16-1.12-.15-1.28-.69-.16-.54.15-1.12.69-1.28 3.9-1.18 10.38-.95 14.47 1.48.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/></svg>
+          Spotify
+        </a>
+        <a href="#" class="flex items-center gap-3 bg-surface-container-high hover:bg-primary hover:text-on-primary border border-outline-variant/30 hover:border-primary text-on-surface-variant px-6 py-3 rounded-full transition-all text-sm font-bold uppercase tracking-wider">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 6.628l-12-2.628v13.8a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V9.628l9-2.028v8.4a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V5l4 .872z"/></svg>
+          Apple Music
+        </a>
+        <a href="#" class="flex items-center gap-3 bg-surface-container-high hover:bg-primary hover:text-on-primary border border-outline-variant/30 hover:border-primary text-on-surface-variant px-6 py-3 rounded-full transition-all text-sm font-bold uppercase tracking-wider">
+          <svg width="18" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          YouTube
+        </a>
+        <a href="#" class="flex items-center gap-3 bg-surface-container-high hover:bg-primary hover:text-on-primary border border-outline-variant/30 hover:border-primary text-on-surface-variant px-6 py-3 rounded-full transition-all text-sm font-bold uppercase tracking-wider">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.56 8.87V17l4.76-2.56-4.76-5.57zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5z"/></svg>
+          TikTok
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- GALLERY -->
+<div class="page" id="page-gallery">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-7xl mx-auto min-h-screen">
+    <div class="mb-14">
+      <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-3 block">Beelden &amp; Herinneringen</span>
+      <h2 class="font-serif text-5xl lg:text-6xl text-on-surface">Gallery</h2>
+    </div>
+    <div class="columns-2 lg:columns-3 gap-4 space-y-4">
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta.jpg" alt="Iris Malta" class="gallery-img w-full object-cover"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/malta-sunset.png" alt="Malta zonsondergang" class="gallery-img w-full object-cover"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-reis.png" alt="Iris op reis" class="gallery-img w-full object-cover"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" class="gallery-img w-full object-cover"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" class="gallery-img w-full object-cover"/></div>
+    </div>
+  </section>
+</div>
+
+<!-- BIO -->
+<div class="page" id="page-bio">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-7xl mx-auto min-h-screen">
+    <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
+      <div class="relative">
+        <img src="assets/iris-malta-rocks.jpg" alt="Iris Duym" class="w-full rounded-2xl shadow-2xl object-cover"/>
+        <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
+      </div>
+      <div>
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-5 block">Het Verhaal</span>
+        <h2 class="font-serif text-5xl lg:text-6xl text-on-surface mb-8">IRIS. Verhalen in Muziek.</h2>
+        <div class="space-y-5 text-on-surface-variant text-lg leading-relaxed">
+          <p>Sommige liedjes ontstaan achter een piano. Andere beginnen met een simpele gedachte. IRIS is een creatief muziekproject waarin verhalen, emotie en moderne technologie samenkomen.</p>
+          <p>Achter IRIS staat Iris Duym. Geen traditionele zangeres, maar een creatieve verhalenverteller die thema's als liefde en zelfontdekking vertaalt naar unieke composities.</p>
+          <p>Muziek componeren is de kortste weg van mijn beleving naar jouw hart. Elk nummer is een zorgvuldig ontworpen ervaring, bedoeld om te raken en te inspireren.</p>
+          <p>Of het nu gaat om de warmte van een thuis, de zoektocht naar jezelf, of de betovering van Malta bij zonsondergang, de muziek van IRIS geeft een stem aan de momenten die ertoe doen.</p>
+        </div>
+        <div class="mt-10 p-8 border border-outline-variant bg-surface-container rounded-xl">
+          <p class="font-serif text-2xl italic text-on-surface leading-relaxed">"Muziek is de taal die we spreken als woorden alleen niet meer genoeg zijn."</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div class="page" id="page-contact">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-4xl mx-auto min-h-screen">
+    <div class="text-center mb-14">
+      <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-4 block">Laten we praten</span>
+      <h2 class="font-serif text-5xl lg:text-6xl text-on-surface mb-4">Contact</h2>
+      <p class="text-on-surface-variant text-lg">Voor optredens, huiskamerconcerten, een persoonlijk lied of gewoon hallo.</p>
+    </div>
+    <div class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 lg:p-14 shadow-2xl">
+      <form class="space-y-6" onsubmit="handleContact(event)">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs uppercase tracking-widest font-bold mb-2 text-on-surface-variant">Naam</label>
+            <input type="text" required class="w-full bg-background border border-outline-variant focus:border-primary text-on-surface px-5 py-3 outline-none transition-colors rounded-lg placeholder:text-on-surface-variant/30"/>
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest font-bold mb-2 text-on-surface-variant">E-mail</label>
+            <input type="email" required class="w-full bg-background border border-outline-variant focus:border-primary text-on-surface px-5 py-3 outline-none transition-colors rounded-lg placeholder:text-on-surface-variant/30"/>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-widest font-bold mb-2 text-on-surface-variant">Onderwerp</label>
+          <input type="text" required class="w-full bg-background border border-outline-variant focus:border-primary text-on-surface px-5 py-3 outline-none transition-colors rounded-lg"/>
+        </div>
+        <div>
+          <label class="block text-xs uppercase tracking-widest font-bold mb-2 text-on-surface-variant">Bericht</label>
+          <textarea rows="5" required class="w-full bg-background border border-outline-variant focus:border-primary text-on-surface px-5 py-3 outline-none transition-colors resize-none rounded-lg"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-primary text-on-primary font-bold uppercase text-sm tracking-widest py-4 gold-glow hover:brightness-110 transition-all rounded-lg">Verstuur Bericht</button>
+      </form>
+      <div class="mt-12 pt-10 border-t border-outline-variant/20 text-center">
+        <p class="text-on-surface-variant text-sm uppercase tracking-widest mb-3">Of mail direct naar</p>
+        <a href="mailto:duym.iris@gmail.com" class="font-serif text-2xl text-primary hover:text-secondary transition-colors">duym.iris@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Audio Dock -->
+<div class="audio-dock fixed bottom-0 left-0 w-full z-50 glass border-t border-outline-variant/10 px-4 lg:px-8 h-24 flex items-center justify-between gap-4" id="audio-dock">
+  <div class="flex items-center gap-4 min-w-0 flex-1">
+    <div class="w-13 h-13 rounded-xl overflow-hidden flex-shrink-0 shadow-lg w-14 h-14">
+      <img id="dock-cover" src="" alt="Cover" class="w-full h-full object-cover"/>
+    </div>
+    <div class="min-w-0">
+      <strong class="block text-sm font-serif text-on-surface truncate" id="dock-title">Kies een nummer</strong>
+      <span class="text-xs text-primary uppercase tracking-widest truncate block" id="dock-sub">IRIS</span>
+      <div class="mt-1.5 w-32 lg:w-56 h-1 bg-surface-variant rounded-full overflow-hidden">
+        <div class="h-full bg-primary rounded-full transition-all" id="audio-progress" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 lg:gap-6 text-on-surface-variant">
+    <button onclick="prevSong()" class="hover:text-primary transition-colors hidden sm:block"><span class="material-symbols-outlined text-3xl">skip_previous</span></button>
+    <button onclick="togglePlay()" class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-primary text-on-primary flex items-center justify-center gold-glow active:scale-95 transition-all" id="dock-play-btn">
+      <span class="material-symbols-outlined text-3xl lg:text-4xl" style="font-variation-settings:'FILL' 1;" id="dock-play-icon">play_arrow</span>
+    </button>
+    <button onclick="nextSong()" class="hover:text-primary transition-colors hidden sm:block"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
+  </div>
+  <div class="hidden lg:flex items-center gap-3 text-on-surface-variant w-36 justify-end">
+    <span class="material-symbols-outlined text-lg">volume_up</span>
+    <input type="range" min="0" max="100" value="80" class="w-20 accent-primary" oninput="setVolume(this.value)"/>
+  </div>
+  <audio id="audio-el"></audio>
+</div>
+
+<script>
+const songs = [
+  { id: 'jij-bent-mijn-thuis',         title: 'Jij bent mijn thuis',         sub: 'Eerste single',   cover: 'assets/jij bent mijn thuis.png',              file: 'assets/jij-bent-mijn-thuis.mp3',
+    lyrics: `Ik zocht naar antwoorden in de wind,
+naar een plek waar ik mezelf kon zijn.
+Door donkere dagen, door lange wegen,
+wist ik niet dat jouw hart op mij zou wachten.
+
+Toen kwam jij zachtjes in mijn leven,
+geen grote woorden, geen luid geluid.
+Maar elke stap die wij samen zetten,
+bracht me dichter bij mijn thuis.
+
+Jij bent mijn rust, jij bent mijn thuis,
+de warme haven waar ik altijd schuil.
+Wanneer de wereld draait en alles verandert,
+blijf jij de liefde die mij dragen wil.
+
+Edith en Iris, hand in hand,
+een verhaal geschreven door het leven zelf.
+En op twaalf april tweeduizend zevenentwintig,
+zeggen wij voor altijd ja tegen elkaar.
+
+We hebben gelachen, we hebben gedroomd,
+en soms ook samen tegen de stroom gestaan.
+Maar elke morgen wanneer ik jou zie,
+weet ik opnieuw waarom ik ben blijven gaan.
+
+Want jij ziet mij zoals ik werkelijk ben,
+zonder maskers, zonder schijn.
+En in jouw ogen vond ik eindelijk
+de moed om helemaal mezelf te zijn.
+
+Jij bent mijn rust, jij bent mijn thuis,
+de warme haven waar ik altijd schuil.
+Wanneer de wereld draait en alles verandert,
+blijf jij de liefde die mij dragen wil.
+
+Edith en Iris, hand in hand,
+een verhaal geschreven door het leven zelf.
+En op twaalf april tweeduizend zevenentwintig,
+zeggen wij voor altijd ja tegen elkaar.
+
+Onder de zon van Malta zullen wij staan,
+met de zee als getuige van ons bestaan.
+Geen storm, geen afstand, geen voorbijgaande tijd,
+kan ooit breken wat ons verbindt.
+
+Jij bent mijn rust, jij bent mijn thuis,
+mijn mooiste morgen en mijn laatste lied.
+Wat er ook komt, waar de weg ons brengt,
+er is geen plaats waar ik liever ben dan hier.
+
+Edith en Iris, hand in hand,
+met liefde sterker dan de golven van de zee.
+En op twaalf april tweeduizend zevenentwintig,
+begint ons voor altijd met jou en mij.
+
+Jij bent mijn rust...
+Jij bent mijn thuis...
+Voor altijd jij en ik.` },
+  { id: 'als-het-jou-niet-was-geweest', title: 'Als het jou niet was geweest', sub: 'Demo',            cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-het-jou-niet-was-geweest.mp3',
+    lyrics: `Ik heb wegen bewandeld die nergens leken te gaan,
+dagen gekend waarin ik mezelf niet kon verstaan.
+Ik zocht naar een antwoord dat ik niet vinden kon,
+tot jij verscheen als een eerste straal van de zon.
+
+Je vroeg me niet om iemand anders te zijn,
+je nam mijn hand en zei: "Kom maar, het is fijn."
+En langzaam viel alles op zijn plaats,
+alsof mijn hart eindelijk wist waar het thuishoort.
+
+Als het jou niet was geweest,
+wie had mij dan gevonden?
+Wie had mijn twijfels stil omarmd,
+mijn losse stukken samengebonden?
+
+Als het jou niet was geweest,
+was ik nooit gekomen waar ik sta.
+Want elke weg die ik bewandelde,
+bracht me uiteindelijk naar jou toe vandaag.
+
+We tellen geen jaren, we tellen herinneringen,
+kleine momenten die groter werden dan dingen.
+Een blik, een glimlach, een hand in de mijne,
+duizend redenen waarom ik gelukkig mag zijn.
+
+En soms denk ik terug aan hoe het begon,
+zonder te weten wat er nog komen kon.
+Nu kijk ik vooruit en zie alleen licht,
+want jij bent het mooiste in mijn zicht.
+
+Als het jou niet was geweest,
+wie had mij dan gevonden?
+Wie had mijn twijfels stil omarmd,
+mijn losse stukken samengebonden?
+
+Als het jou niet was geweest,
+was ik nooit gekomen waar ik sta.
+Want elke weg die ik bewandelde,
+bracht me uiteindelijk naar jou toe vandaag.
+
+En op twaalf april, onder de Maltese zon,
+beginnen wij samen aan wat al lang begon.
+Geen belofte voor even, geen droom die vervaagt,
+maar een liefde die groeit, hoe de tijd ook vergaat.
+
+Als het jou niet was geweest,
+had ik nooit geweten wat liefde werkelijk is.
+Niet de grote woorden, niet de mooie schijn,
+maar iemand die zegt: "Blijf maar hier bij mij."
+
+Als het jou niet was geweest,
+dan miste er iets in elk verhaal.
+Maar nu sta jij hier naast me,
+en voelt voor altijd heel normaal.
+
+Edith en Iris, hand in hand,
+onder dezelfde hemel, aan dezelfde kant.
+En wat er ook komt, wat de toekomst ook brengt,
+ik weet dat mijn hart voor altijd het jouwe kent.` },
+  { id: 'dit-ben-ik',                   title: 'Dit ben ik',                   sub: 'Single',          cover: 'assets/dit ben ik.png',                       file: 'assets/dit-ben-ik.mp3',
+    lyrics: `Ik heb jaren rondgelopen
+met een glimlach op mijn gezicht.
+Maar achter al die mooie woorden
+zocht ik naar een beetje licht.
+
+Ik probeerde mee te bewegen,
+zoals iedereen het zag.
+Maar diep vanbinnen voelde ik
+dat ik mezelf niet vinden kon.
+
+En elke dag een stapje verder,
+ook al wist ik niet waarheen.
+Tot ik eindelijk durfde kijken
+naar de mens die in mij leefde.
+
+Dit ben ik.
+Niet perfect, maar wel echt.
+Met mijn dromen en mijn twijfels,
+met alles wat ik heb gezegd.
+
+Dit ben ik.
+Geen schaduw meer van toen.
+Ik hoef me niet meer te verbergen,
+ik heb eindelijk genoeg aan wie ik ben.
+
+Er waren stemmen vol verwachtingen,
+wegen die niet voor mij waren gemaakt.
+Maar hoe harder ik probeerde te passen,
+hoe meer ik mezelf kwijtraakte.
+
+Tot ik stopte met vluchten,
+en luisterde naar mijn hart.
+Want soms ligt de grootste vrijheid
+in gewoon jezelf te zijn.
+
+En al die jaren die voorbijgingen,
+waren niet verloren, niet voor niets.
+Ze brachten mij precies hierheen,
+naar dit moment, naar dit gezicht.
+
+Dit ben ik.
+Niet perfect, maar wel echt.
+Met mijn dromen en mijn twijfels,
+met alles wat ik heb gezegd.
+
+Dit ben ik.
+Geen schaduw meer van toen.
+Ik hoef me niet meer te verbergen,
+ik heb eindelijk genoeg aan wie ik ben.
+
+Misschien was ik altijd al onderweg,
+zonder te weten waar ik moest zijn.
+Maar vandaag kijk ik in de spiegel
+en zie ik eindelijk mezelf verschijnen.
+
+Geen angst meer tussen mij en morgen,
+geen masker dat ik dragen moet.
+Alleen een hart dat rustig fluistert:
+
+"Je bent goed zoals je bent."
+
+Dit ben ik.
+Sterker dan ik ooit had gedacht.
+Niet omdat alles makkelijk was,
+maar omdat ik ben blijven vechten.
+
+Dit ben ik.
+En voor het eerst voelt het vrij.
+Ik kijk vooruit met open armen,
+want vandaag kies ik voor mij.
+
+Dit ben ik...
+
+En eindelijk voel ik mij vrij.` },
+  { id: 'mijn-hart-kent-de-weg',        title: 'Mijn hart kent de weg',        sub: 'Single',          cover: 'assets/mijn hart kent de weg.png',            file: 'assets/mijn-hart-kent-de-weg.mp3',
+    lyrics: `Ik heb wegen gevolgd die ik niet kon verklaren,
+soms door zonlicht, soms door verdriet.
+Ik dacht dat ik de richting kwijt was,
+maar mijn hart verloor jou nooit uit het zicht.
+
+Er waren dagen vol vragen en twijfels,
+nachten waarin ik de sterren vroeg waarom.
+Maar diep vanbinnen bleef iets mij vertellen,
+dat alles ooit zou samenkomen.
+
+En elke stap die ik heb gezet,
+bracht mij dichter bij dit moment.
+
+Mijn hart kent de weg,
+ook als ik verdwalen ga.
+Door iedere storm,
+door iedere nieuwe dag.
+
+Mijn hart kent de weg,
+het bracht mij steeds naar jou.
+En nu jij naast me staat,
+weet ik hoeveel ik van je hou.
+
+Ik zie de toekomst wanneer jij glimlacht,
+ik hoor thuiskomen in jouw stem.
+Geen kaart, geen kompas had mij kunnen tonen,
+wat ik uiteindelijk bij jou vond.
+
+Want liefde is soms niet zoeken,
+maar herkennen wat altijd al bestond.
+Alsof twee levens langzaam samenkomen,
+precies zoals het moest.
+
+En elke droom die ik heb gehad,
+bracht mij dichter bij jouw hand.
+
+Mijn hart kent de weg,
+ook als ik verdwalen ga.
+Door iedere storm,
+door iedere nieuwe dag.
+
+Mijn hart kent de weg,
+het bracht mij steeds naar jou.
+En nu jij naast me staat,
+weet ik hoeveel ik van je hou.
+
+En ineens begrijp ik waarom al die wegen,
+mij uiteindelijk naar jou hebben geleid.
+Want soms weet een hart al veel eerder,
+wat een mens pas later begrijpt.
+
+Mijn hart kent de weg,
+door alle jaren heen.
+Het leidde mij naar liefde,
+en liet mij nooit alleen.
+
+Mijn hart kent de weg,
+en eindelijk ben ik hier.
+Met jou aan mijn zijde,
+begint ons mooiste avontuur.
+
+Hand in hand, zij aan zij...
+
+Mijn hart kende de weg.` },
+  { id: 'als-jij-hier-niet-bent',        title: 'Als jij hier niet bent',       sub: 'Single',          cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-jij-hier-niet-bent.mp3',
+    lyrics: `De klok tikt verder in een leeg huis,
+de stilte klinkt harder dan ooit.
+Ik kijk nog steeds naar jouw foto,
+alsof jij straks weer binnenloopt.
+
+De koffie staat nog op dezelfde plek,
+ik weet niet waarom ik dat doe.
+Misschien omdat ik diep vanbinnen
+nog steeds een beetje wacht op jou.
+
+Want alles voelt anders zonder jou,
+alsof de zon niet meer wil schijnen.
+Ik lach nog wel, ik leef nog wel,
+maar sommige dingen zullen nooit verdwijnen.
+
+En elke nacht denk ik aan toen,
+aan wat wij samen hebben gehad.
+Want hoe de tijd ook verder gaat,
+jij blijft het mooiste dat ik had.
+
+De straat waar wij zo vaak liepen,
+ligt er nog altijd even stil.
+Maar elke stap brengt herinneringen,
+aan alles wat ik zeggen wil.
+
+Soms hoor ik nog jouw stem in huis,
+heel even, zomaar onverwacht.
+Dan sluit ik zachtjes mijn ogen
+en ben jij weer dichtbij vannacht.
+
+Want alles voelt anders zonder jou,
+alsof de zon niet meer wil schijnen.
+Ik lach nog wel, ik leef nog wel,
+maar sommige dingen zullen nooit verdwijnen.
+
+En elke nacht denk ik aan toen,
+aan wat wij samen hebben gehad.
+Want hoe de tijd ook verder gaat,
+jij blijft het mooiste dat ik had.
+
+Misschien geneest de tijd de wonden,
+dat zeggen mensen om mij heen.
+Maar sommige liefdes blijven leven,
+ook al sta je weer alleen.
+
+Want alles voelt anders zonder jou,
+maar ik draag jou nog elke dag.
+In elke droom, in elke herinnering,
+in elke traan en elke lach.
+
+En als ik ooit weer naar de sterren kijk,
+weet ik dat jij daar ergens bent.
+En dat mijn hart jouw naam nog fluistert,
+ook al ben jij zo ver weg.
+
+Ik mis je...
+meer dan woorden zeggen kunnen.` },
+  { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Nieuwste track',  cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',
+    lyrics: `Ik weet nog hoe gewoon het leek,
+alsof het niets bijzonders was.
+Een gesprek, een lach, een eerste blik,
+een moment dat zomaar kwam.
+
+Ik had nooit kunnen bedenken,
+wat er langzaam zou ontstaan.
+Dat iemand die eerst een vreemde was,
+zo dichtbij kon komen staan.
+
+Soms verandert heel je leven,
+zonder dat je het meteen begrijpt.
+
+Van alle mensen die ik had kunnen ontmoeten,
+van alle wegen die ik had kunnen gaan.
+Ben jij degene die bleef toen het stil werd,
+degene die mij echt heeft verstaan.
+
+Van alle mensen die ik had kunnen vinden,
+ben ik zo blij dat jij het bent.
+Want sommige verhalen beginnen heel gewoon,
+en worden later onvergetelijk.
+
+We hebben onze eigen hoofdstukken,
+onze dromen en ons verleden.
+Maar ergens tussen toen en nu
+zijn onze lijnen samengekomen.
+
+En wat de toekomst ook zal brengen,
+wat er nog op ons wacht.
+Ik weet alleen dat elke dag mooier wordt,
+omdat jij er bent.
+
+Soms verandert heel je leven,
+zonder dat je het meteen begrijpt.
+
+Van alle mensen die ik had kunnen ontmoeten,
+van alle wegen die ik had kunnen gaan.
+Ben jij degene die bleef toen het stil werd,
+degene die mij echt heeft verstaan.
+
+Van alle mensen die ik had kunnen vinden,
+ben ik zo blij dat jij het bent.
+Want sommige verhalen beginnen heel gewoon,
+en worden later onvergetelijk.
+
+Misschien draait liefde niet om zoeken,
+maar om herkennen wat al klopt.
+Alsof twee harten elkaar tegenkomen,
+precies wanneer de tijd dat wil.
+
+En elke keer als ik naar je kijk,
+denk ik hetzelfde weer:
+Wat een geluk dat jij bestaat.
+
+Van alle mensen die ik had kunnen ontmoeten,
+van alle dromen die ik had kunnen zien.
+Ben jij degene die kleur gaf aan mijn dagen,
+zonder ooit iets terug te vragen.
+
+Van alle mensen die ik had kunnen vinden,
+ben ik zo blij dat jij het bent.
+En als ik alles opnieuw mocht beleven,
+zou ik opnieuw voor jou kiezen.
+
+Van alle mensen...
+
+Ben ik zo blij dat jij het bent.` },
+];
+
+let currentIdx = -1;
+const audio = document.getElementById('audio-el');
+const dock = document.getElementById('audio-dock');
+const dockTitle = document.getElementById('dock-title');
+const dockSub = document.getElementById('dock-sub');
+const dockCover = document.getElementById('dock-cover');
+const dockIcon = document.getElementById('dock-play-icon');
+const progressBar = document.getElementById('audio-progress');
+
+function renderHomeGrid() {
+  const el = document.getElementById('home-music-grid');
+  el.innerHTML = songs.slice(0,4).map(s => `
+    <div class="music-card group cursor-pointer" onclick="playSong('${s.id}')">
+      <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 shadow-xl">
+        <img src="${s.cover}" alt="${s.title}" class="music-card-img w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-5">
+          <h3 class="font-serif text-xl text-primary mb-3 leading-tight">${s.title}</h3>
+          <div class="flex items-center justify-between">
+            <span class="text-white/50 text-[10px] uppercase tracking-widest">${s.sub}</span>
+            <div class="play-circle w-10 h-10 bg-white rounded-full flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-surface text-2xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTracklist() {
+  const el = document.getElementById('tracklist');
+  const svgSpotify = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 14.44c-.2.32-.63.42-.95.21-2.59-1.58-5.86-1.94-9.7-1.06-.37.09-.74-.14-.83-.51-.09-.37.14-.74.51-.83 4.21-.96 7.83-.55 10.75 1.23.32.2.42.63.22.96zm1.24-2.76c-.25.4-.78.53-1.18.28-2.97-1.83-7.49-2.36-11.01-1.29-.46.14-.94-.12-1.08-.58-.14-.46.12-.94.58-1.08 4.02-1.22 9.01-.63 12.43 1.48.4.25.52.78.26 1.19zm.11-2.88c-3.56-2.11-9.43-2.31-12.83-1.28-.54.16-1.12-.15-1.28-.69-.16-.54.15-1.12.69-1.28 3.9-1.18 10.38-.95 14.47 1.48.49.29.65.92.36 1.41-.29.49-.92.65-1.41.36z"/></svg>`;
+  const svgApple = `<svg width="14" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 6.628l-12-2.628v13.8a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V9.628l9-2.028v8.4a3.118 3.118 0 01-2.1 2.959 3.276 3.276 0 01-1.4.241 3.2 3.2 0 01-2-.641 2.8 2.8 0 01-.965-2.959 3.063 3.063 0 012.2-2.2 3.434 3.434 0 011.265-.041V5l4 .872z"/></svg>`;
+  const svgYT = `<svg width="16" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.38.55A3.02 3.02 0 00.5 6.19C0 8.05 0 12 0 12s0 3.95.5 5.81a3.02 3.02 0 002.12 2.14C4.47 20.5 12 20.5 12 20.5s7.53 0 9.38-.55a3.02 3.02 0 002.12-2.14C24 15.95 24 12 24 12s0-3.95-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>`;
+
+  el.innerHTML = songs.map((s, i) => `
+    <div class="rounded-xl overflow-hidden" id="track-wrap-${s.id}">
+      <div class="track-row group flex items-center gap-4 lg:gap-6 p-4 lg:p-5 hover:bg-surface-container transition-all" id="track-${s.id}">
+        <!-- Nummer -->
+        <span class="track-num text-on-surface-variant/40 text-sm font-bold w-6 text-center shrink-0 group-hover:hidden">${i + 1}</span>
+        <button class="track-play hidden group-hover:flex w-6 items-center justify-center shrink-0 text-primary" onclick="playSong('${s.id}')">
+          <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+        </button>
+        <!-- Cover -->
+        <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-lg overflow-hidden shrink-0 shadow-md ${s.file ? 'cursor-pointer' : 'opacity-60'}" ${s.file ? `onclick="playSong('${s.id}')"` : ''}>
+          <img src="${s.cover}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
+        </div>
+        <!-- Info -->
+        <div class="flex-1 min-w-0 ${s.file ? 'cursor-pointer' : ''}" ${s.file ? `onclick="playSong('${s.id}')"` : ''}>
+          <strong class="block font-serif text-lg lg:text-xl text-on-surface group-hover:text-primary transition-colors truncate">${s.title}</strong>
+          <span class="text-xs uppercase tracking-wider ${s.file ? 'text-on-surface-variant' : 'text-primary/60'}">${s.file ? s.sub : 'Binnenkort beschikbaar'}</span>
+        </div>
+        <!-- Streaming icons -->
+        <div class="hidden sm:flex items-center gap-3 text-on-surface-variant/40 shrink-0">
+          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op Spotify" class="hover:text-[#1DB954] transition-colors" title="Spotify">${svgSpotify}</a>
+          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op Apple Music" class="hover:text-white transition-colors" title="Apple Music">${svgApple}</a>
+          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op YouTube" class="hover:text-[#FF0000] transition-colors" title="YouTube">${svgYT}</a>
+        </div>
+        ${s.lyrics ? `
+        <!-- Lyrics toggle -->
+        <button onclick="toggleLyrics('${s.id}')" class="shrink-0 w-10 h-10 rounded-full border border-outline-variant/40 text-on-surface-variant flex items-center justify-center hover:border-primary hover:text-primary hover:bg-primary/5 transition-all" title="Songtekst" id="lyrics-btn-${s.id}">
+          <span class="material-symbols-outlined text-xl">lyrics</span>
+        </button>` : ''}
+        <!-- Play button -->
+        ${s.file ? `
+        <button onclick="playSong('${s.id}')" class="shrink-0 w-10 h-10 rounded-full border border-outline-variant/40 text-on-surface-variant flex items-center justify-center hover:border-primary hover:text-primary hover:bg-primary/5 transition-all">
+          <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+        </button>` : `
+        <div class="shrink-0 w-10 h-10 rounded-full border border-outline-variant/20 text-on-surface-variant/20 flex items-center justify-center" title="Nog niet beschikbaar">
+          <span class="material-symbols-outlined text-xl">schedule</span>
+        </div>`}
+      </div>
+      ${s.lyrics ? `
+      <!-- Lyrics panel -->
+      <div id="lyrics-${s.id}" class="hidden px-6 pb-8 pt-4 bg-surface-container border-t border-outline-variant/10">
+        <p class="font-serif text-on-surface-variant leading-loose text-base lg:text-lg whitespace-pre-line max-w-2xl">${s.lyrics}</p>
+      </div>` : ''}
+    </div>
+    ${i < songs.length - 1 ? '<div class="h-px bg-outline-variant/10 mx-4"></div>' : ''}
+  `).join('');
+}
+
+function toggleLyrics(id) {
+  const panel = document.getElementById('lyrics-' + id);
+  const btn = document.getElementById('lyrics-btn-' + id);
+  if (!panel) return;
+  const isOpen = !panel.classList.contains('hidden');
+  panel.classList.toggle('hidden', isOpen);
+  btn.classList.toggle('text-primary', !isOpen);
+  btn.classList.toggle('border-primary', !isOpen);
+}
+
+function playSong(id) {
+  const idx = songs.findIndex(s => s.id === id);
+  if (idx === -1) return;
+  const song = songs[idx];
+  currentIdx = idx;
+
+  if (audio.src.endsWith(song.file) && !audio.paused) {
+    audio.pause();
+    dockIcon.textContent = 'play_arrow';
+    return;
+  }
+
+  audio.src = song.file;
+  dockTitle.textContent = song.title;
+  dockSub.textContent = song.sub.toUpperCase();
+  dockCover.src = song.cover;
+  dock.classList.add('visible');
+
+  audio.play().then(() => {
+    dockIcon.textContent = 'pause';
+    updateTracklistActive(song.id);
+  }).catch(() => {});
+}
+
+function updateTracklistActive(activeId) {
+  document.querySelectorAll('.track-row').forEach(row => {
+    const id = row.id.replace('track-', '');
+    const num = row.querySelector('.track-num');
+    if (id === activeId) {
+      row.classList.add('bg-surface-container');
+      if (num) num.innerHTML = '<span class="material-symbols-outlined text-primary text-base" style="font-variation-settings:\'FILL\' 1;">equalizer</span>';
+    } else {
+      row.classList.remove('bg-surface-container');
+      const idx = songs.findIndex(s => s.id === id);
+      if (num) num.textContent = idx + 1;
+    }
+  });
+}
+
+function togglePlay() {
+  if (!audio.src) return;
+  if (audio.paused) { audio.play(); dockIcon.textContent = 'pause'; }
+  else { audio.pause(); dockIcon.textContent = 'play_arrow'; }
+}
+
+function nextSong() {
+  if (currentIdx < songs.length - 1) playSong(songs[currentIdx + 1].id);
+}
+function prevSong() {
+  if (currentIdx > 0) playSong(songs[currentIdx - 1].id);
+}
+function setVolume(v) { audio.volume = v / 100; }
+
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+});
+audio.addEventListener('ended', () => { dockIcon.textContent = 'play_arrow'; nextSong(); });
+
+// Navigation
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.classList.toggle('active-nav', a.dataset.page === name);
+  });
+  closeDrawer();
+  window.scrollTo(0, 0);
+  setTimeout(initReveal, 100);
+}
+
+function toggleDrawer() {
+  const d = document.getElementById('drawer');
+  const o = document.getElementById('drawer-overlay');
+  d.classList.toggle('open');
+  o.classList.toggle('hidden');
+  document.body.classList.toggle('overflow-hidden');
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.add('hidden');
+  document.body.classList.remove('overflow-hidden');
+}
+
+// Video toggle
+function toggleVideo() {
+  const v = document.getElementById('hero-video');
+  const overlay = document.getElementById('video-play-overlay');
+  if (v.paused) { v.play(); overlay.style.display = 'none'; }
+  else { v.pause(); overlay.style.display = 'flex'; }
+}
+
+// Reveal on scroll
+function initReveal() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('#page-' + getCurrentPage() + ' .reveal').forEach(el => observer.observe(el));
+}
+
+function getCurrentPage() {
+  const active = document.querySelector('.page.active');
+  return active ? active.id.replace('page-', '') : 'home';
+}
+
+function handleContact(e) {
+  e.preventDefault();
+  e.target.innerHTML = '<div class="text-center py-12"><p class="font-serif text-3xl text-primary mb-4">Bedankt!</p><p class="text-on-surface-variant">Je bericht is verstuurd. Ik neem zo snel mogelijk contact op. ♡</p></div>';
+}
+
+// Init
+window.addEventListener('DOMContentLoaded', () => {
+  renderHomeGrid();
+  renderTracklist();
+  setTimeout(initReveal, 200);
+  // set home nav active
+  const homeLink = document.querySelector('[data-page="home"]');
+  if (homeLink) homeLink.classList.add('active-nav');
+});
+</script>
+</body>
+</html>
