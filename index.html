@@ -105,13 +105,11 @@ tailwind.config = {
     position: relative;
     background-color: #0a0806;
   }
-  .hero-photo {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 40%;
+  .hero-photo { display: none; }
+  .hero-bg {
+    background-image: url('assets/hero-malta-sunset.png');
+    background-size: cover;
+    background-position: 70% 40%;
     filter: sepia(35%) saturate(130%) hue-rotate(-10deg) brightness(1.05);
   }
   .hero-overlay {
