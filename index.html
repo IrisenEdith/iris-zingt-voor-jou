@@ -105,20 +105,17 @@ tailwind.config = {
     position: relative;
     background-color: #0a0806;
   }
-  .hero-photo {
-    position: absolute;
-    top: 0; right: 0;
-    width: 65%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    filter: sepia(35%) saturate(130%) hue-rotate(-10deg) brightness(1.05);
+  .hero-photo { display: none; }
+  .hero-bg {
+    background-image: url('assets/hero-malta-sunset.png');
+    background-size: cover;
+    background-position: center 12%;
+    filter: sepia(40%) saturate(140%) hue-rotate(-10deg) brightness(1.0);
   }
-  .hero-bg { background: #0a0806; }
   .hero-overlay {
     background:
-      linear-gradient(to right, #0a0806 0%, #0a0806 25%, rgba(10,8,6,0.75) 45%, rgba(10,8,6,0.10) 70%, rgba(10,8,6,0.0) 100%),
-      linear-gradient(to top, #131313 0%, transparent 18%);
+      linear-gradient(to right, rgba(10,8,6,0.92) 0%, rgba(10,8,6,0.75) 35%, rgba(10,8,6,0.30) 60%, rgba(10,8,6,0.0) 100%),
+      linear-gradient(to top, #131313 0%, transparent 20%);
   }
   .hero-bottom-fade {
     position: absolute;
