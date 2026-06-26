@@ -111,12 +111,12 @@ tailwind.config = {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 88% 40%;
+    object-position: center 40%;
     filter: sepia(35%) saturate(130%) hue-rotate(-10deg) brightness(1.05);
   }
   .hero-overlay {
     background:
-      linear-gradient(to right, rgba(10,8,6,0.82) 0%, rgba(10,8,6,0.35) 50%, rgba(10,8,6,0.45) 100%),
+      linear-gradient(to right, rgba(10,8,6,0.88) 0%, rgba(10,8,6,0.50) 45%, rgba(10,8,6,0.15) 100%),
       linear-gradient(to top, #131313 0%, transparent 18%);
   }
   .hero-bottom-fade {
@@ -256,7 +256,8 @@ tailwind.config = {
     <img src="assets/hero-malta-sunset.png" alt="" class="hero-photo" aria-hidden="true"/>
     <div class="hero-overlay absolute inset-0"></div>
     <div class="hero-bottom-fade"></div>
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pb-20 lg:pb-0">
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pb-20 lg:pb-0 lg:flex lg:items-center">
+      <div class="lg:max-w-[45%]">
       <p class="text-primary text-xs font-bold uppercase tracking-[0.3em] mb-5">Welkom bij Iris</p>
       <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] mb-6 text-on-surface">
         Jouw liefde.<br/>Mijn thuis.<br/>Ons verhaal.
@@ -267,6 +268,7 @@ tailwind.config = {
         <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
         Luister nu
       </button>
+      </div>
     </div>
   </section>
 
