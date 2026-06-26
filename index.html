@@ -359,7 +359,7 @@ tailwind.config = {
           <div class="font-serif text-4xl text-primary tracking-widest text-glow mb-2">IRIS</div>
           <p class="font-serif text-on-surface text-lg mb-1">Verhalen in Muziek.</p>
           <p class="font-serif text-on-surface text-lg mb-6">Voor Jou.</p>
-          <p class="font-serif text-on-surface-variant text-base italic max-w-xs leading-relaxed">"Sommige verhalen worden niet geschreven. Ze worden gezongen."</p>
+          <p class="font-serif text-on-surface-variant text-xl lg:text-2xl italic lg:whitespace-nowrap leading-relaxed">"Sommige verhalen worden niet geschreven. Ze worden gezongen."</p>
         </div>
         <div class="flex flex-wrap justify-center gap-12 lg:gap-16">
           <div class="flex flex-col gap-3">
@@ -447,7 +447,8 @@ tailwind.config = {
 
 <!-- BIO -->
 <div class="page" id="page-bio">
-  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-7xl mx-auto min-h-screen">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-7xl mx-auto">
+    <!-- Bio: foto + tekst -->
     <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
       <div class="relative">
         <img src="assets/iris-malta-rocks.jpg" alt="Iris Duym" class="w-full rounded-2xl shadow-2xl object-cover"/>
@@ -468,6 +469,25 @@ tailwind.config = {
       </div>
     </div>
 
+    <!-- The World of IRIS -->
+    <div class="max-w-4xl mx-auto text-center pt-16 border-t border-outline-variant/20">
+      <p class="font-serif text-primary text-xl lg:text-2xl italic mb-12 leading-relaxed">"Sommige verhalen worden niet geschreven.<br>Ze worden gezongen."</p>
+      <div class="space-y-4 text-on-surface-variant text-lg lg:text-xl leading-loose font-serif">
+        <p>Er zijn momenten in het leven waarop je voelt dat woorden alleen niet meer genoeg zijn.</p>
+        <p>Momenten waarop een herinnering, een glimlach of een traan vraagt om iets meer.<br>Om muziek.</p>
+        <p class="text-on-surface">IRIS is ontstaan vanuit precies dat gevoel.</p>
+        <p>Niet als een plan.<br>Niet als een commercieel project.<br>Maar als een droom.</p>
+        <p>Een plek waar verhalen, beelden en muziek samenkomen.<br>Een wereld waarin liefde, hoop en verbondenheid belangrijker zijn dan perfectie.</p>
+        <p>Waar iedere song begint met een gevoel.<br>En iedere bezoeker zijn eigen verhaal mag herkennen.</p>
+        <div class="h-px bg-outline-variant/20 max-w-xs mx-auto my-10"></div>
+        <p>IRIS wil naast mensen staan.<br>Soms met een glimlach.<br>Soms met een traan.<br>Maar altijd met een open hart.</p>
+        <p>Want uiteindelijk zijn we allemaal onderweg.<br>Op zoek naar iemand die ons begrijpt.<br>Op zoek naar dat ene liedje waarvan we denken:</p>
+        <p class="font-serif text-on-surface text-xl lg:text-2xl italic pt-4">"Alsof het speciaal voor mij geschreven werd."</p>
+        <div class="h-px bg-outline-variant/20 max-w-xs mx-auto my-10"></div>
+        <p class="text-on-surface text-2xl lg:text-3xl font-serif">Welkom in de wereld van IRIS.</p>
+        <p class="text-on-surface-variant pb-8">Hier worden verhalen muziek.<br>En krijgt muziek een thuis.</p>
+      </div>
+    </div>
   </section>
 </div>
 
@@ -939,7 +959,7 @@ const progressBar = document.getElementById('audio-progress');
 
 function renderHomeGrid() {
   const el = document.getElementById('home-music-grid');
-  el.innerHTML = songs.slice(0,4).map(s => `
+  el.innerHTML = songs.slice(0,5).map(s => `
     <div class="music-card group cursor-pointer" onclick="playSong('${s.id}')">
       <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 shadow-xl">
         <img src="${s.cover}" alt="${s.title}" class="music-card-img w-full h-full object-cover"/>
