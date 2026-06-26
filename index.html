@@ -3,8 +3,54 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>IRIS | Verhalen in Muziek</title>
-<meta name="description" content="IRIS - Muziek die raakt, verhalen die blijven. Van hart tot hart."/>
+<title>IRIS | Verhalen in Muziek – Voor Jou</title>
+<meta name="description" content="IRIS is het muziekproject van Iris Duym. Warme, emotionele Nederlandstalige muziek over liefde, hoop en verbondenheid. Verhalen in muziek, voor jou."/>
+<meta name="keywords" content="IRIS, Iris Duym, Nederlandstalige muziek, singer-songwriter, België, Verhalen in Muziek, emotionele muziek, ballads"/>
+<meta name="author" content="Iris Duym"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://iris-zingt-voor-jou.vercel.app/"/>
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://iris-zingt-voor-jou.vercel.app/"/>
+<meta property="og:title" content="IRIS | Verhalen in Muziek – Voor Jou"/>
+<meta property="og:description" content="Warme, emotionele Nederlandstalige muziek over liefde, hoop en verbondenheid. Verhalen in muziek, voor jou."/>
+<meta property="og:image" content="https://iris-zingt-voor-jou.vercel.app/assets/hero-malta-sunset.png"/>
+<meta property="og:locale" content="nl_BE"/>
+<meta property="og:site_name" content="IRIS"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="IRIS | Verhalen in Muziek – Voor Jou"/>
+<meta name="twitter:description" content="Warme, emotionele Nederlandstalige muziek over liefde, hoop en verbondenheid."/>
+<meta name="twitter:image" content="https://iris-zingt-voor-jou.vercel.app/assets/hero-malta-sunset.png"/>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 44'><line x1='18' y1='44' x2='18' y2='22' stroke='%23f3bc78' stroke-width='1.5'/><path d='M18 34 C12 30 8 24 10 18 C13 22 16 28 18 34Z' fill='%23f3bc78' opacity='0.5'/><path d='M18 34 C24 30 28 24 26 18 C23 22 20 28 18 34Z' fill='%23f3bc78' opacity='0.5'/><path d='M18 22 C15 16 14 10 18 4 C22 10 21 16 18 22Z' fill='%23f3bc78'/><path d='M18 20 C13 17 7 15 4 10 C8 9 14 13 18 20Z' fill='%23f3bc78' opacity='0.85'/><path d='M18 20 C23 17 29 15 32 10 C28 9 22 13 18 20Z' fill='%23f3bc78' opacity='0.85'/></svg>"/>
+<meta name="theme-color" content="#131313"/>
+
+<!-- Structured Data: Musician -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "IRIS",
+  "alternateName": "Iris Duym",
+  "description": "IRIS is het muziekproject van Iris Duym. Warme, emotionele Nederlandstalige muziek over liefde, hoop en verbondenheid.",
+  "url": "https://iris-zingt-voor-jou.vercel.app/",
+  "image": "https://iris-zingt-voor-jou.vercel.app/assets/hero-malta-sunset.png",
+  "genre": ["Pop", "Nederlandstalige muziek", "Ballad"],
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "België"
+  },
+  "member": {
+    "@type": "Person",
+    "name": "Iris Duym"
+  },
+  "sameAs": []
+}
+</script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif:wght@400;500;600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -231,7 +277,7 @@ tailwind.config = {
         <!-- Cover + play -->
         <div class="relative group cursor-pointer" onclick="playSong('dit-ben-ik')">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-            <img src="assets/dit ben ik.png" alt="Dit ben ik - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700"/>
+            <img src="assets/dit ben ik.png" alt="Dit ben ik - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center gold-glow">
                 <span class="material-symbols-outlined text-5xl text-on-primary" style="font-variation-settings:'FILL' 1;">play_arrow</span>
@@ -298,7 +344,7 @@ tailwind.config = {
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
       <div class="grid lg:grid-cols-2 gap-14 items-center">
         <div class="relative">
-          <img src="assets/iris-malta.jpg" alt="Iris Duym" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl"/>
+          <img src="assets/iris-malta.jpg" alt="Iris Duym" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl" loading="lazy"/>
           <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
         </div>
         <div>
@@ -437,11 +483,11 @@ tailwind.config = {
       <h2 class="font-serif text-5xl lg:text-6xl text-on-surface">Gallery</h2>
     </div>
     <div class="columns-2 lg:columns-3 gap-4 space-y-4">
-      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta.jpg" alt="Iris Malta" class="gallery-img w-full object-cover"/></div>
-      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/malta-sunset.png" alt="Malta zonsondergang" class="gallery-img w-full object-cover"/></div>
-      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-reis.png" alt="Iris op reis" class="gallery-img w-full object-cover"/></div>
-      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" class="gallery-img w-full object-cover"/></div>
-      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" class="gallery-img w-full object-cover"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta.jpg" alt="Iris Malta" class="gallery-img w-full object-cover" loading="lazy"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/malta-sunset.png" alt="Malta zonsondergang" class="gallery-img w-full object-cover" loading="lazy"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-reis.png" alt="Iris op reis" class="gallery-img w-full object-cover" loading="lazy"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" class="gallery-img w-full object-cover" loading="lazy"/></div>
+      <div class="gallery-item overflow-hidden rounded-xl break-inside-avoid"><img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" class="gallery-img w-full object-cover" loading="lazy"/></div>
     </div>
   </section>
 </div>
@@ -452,7 +498,7 @@ tailwind.config = {
     <!-- Bio: foto + tekst -->
     <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
       <div class="relative">
-        <img src="assets/iris-malta-rocks.jpg" alt="Iris Duym" class="w-full rounded-2xl shadow-2xl object-cover"/>
+        <img src="assets/iris-malta-rocks.jpg" alt="Iris Duym" class="w-full rounded-2xl shadow-2xl object-cover" loading="lazy"/>
         <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
       </div>
       <div>
