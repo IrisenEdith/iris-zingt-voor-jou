@@ -1021,7 +1021,7 @@ const progressBar = document.getElementById('audio-progress');
 
 function renderHomeGrid() {
   const el = document.getElementById('home-music-grid');
-  el.innerHTML = songs.slice(0,5).map(s => `
+  el.innerHTML = songs.slice(0,6).map(s => `
     <div class="music-card group cursor-pointer" onclick="playSong('${s.id}')">
       <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 shadow-xl">
         <img src="${s.cover}" alt="${s.title}" class="music-card-img w-full h-full object-cover"/>
