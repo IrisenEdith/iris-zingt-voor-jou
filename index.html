@@ -333,7 +333,7 @@ tailwind.config = {
         </button>
       </div>
 
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6" id="home-music-grid"></div>
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6" id="home-music-grid"></div>
     </div>
   </section>
 
@@ -1023,7 +1023,7 @@ function renderHomeGrid() {
   const el = document.getElementById('home-music-grid');
   el.innerHTML = songs.slice(0,6).map(s => `
     <div class="music-card group cursor-pointer" onclick="playSong('${s.id}')">
-      <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 shadow-xl">
+      <div class="relative aspect-square rounded-xl overflow-hidden mb-4 shadow-xl">
         <img src="${s.cover}" alt="${s.title}" class="music-card-img w-full h-full object-cover"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 p-5">
