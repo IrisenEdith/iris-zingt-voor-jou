@@ -621,7 +621,7 @@ tailwind.config = {
 
 <script>
 const songs = [
-  { id: 'jij-bent-mijn-thuis',         title: 'Jij bent mijn thuis',         sub: 'Eerste single',   cover: 'assets/jij bent mijn thuis.png',              file: 'assets/jij-bent-mijn-thuis.mp3',
+  { id: 'jij-bent-mijn-thuis',         title: 'Jij bent mijn thuis',         sub: 'Eerste single',   cover: 'assets/jij bent mijn thuis.png',              file: 'assets/jij-bent-mijn-thuis.mp3',         spotify: '', youtube: '',
     lyrics: `Ik zocht naar antwoorden in de wind,
 naar een plek waar ik mezelf kon zijn.
 Door donkere dagen, door lange wegen,
@@ -680,7 +680,7 @@ begint ons voor altijd met jou en mij.
 Jij bent mijn rust...
 Jij bent mijn thuis...
 Voor altijd jij en ik.` },
-  { id: 'als-het-jou-niet-was-geweest', title: 'Als het jou niet was geweest', sub: 'Demo',            cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-het-jou-niet-was-geweest.mp3',
+  { id: 'als-het-jou-niet-was-geweest', title: 'Als het jou niet was geweest', sub: 'Demo',            cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-het-jou-niet-was-geweest.mp3',  spotify: '', youtube: '',
     lyrics: `Ik heb wegen bewandeld die nergens leken te gaan,
 dagen gekend waarin ik mezelf niet kon verstaan.
 Ik zocht naar een antwoord dat ik niet vinden kon,
@@ -740,7 +740,7 @@ Edith en Iris, hand in hand,
 onder dezelfde hemel, aan dezelfde kant.
 En wat er ook komt, wat de toekomst ook brengt,
 ik weet dat mijn hart voor altijd het jouwe kent.` },
-  { id: 'dit-ben-ik',                   title: 'Dit ben ik',                   sub: 'Single',          cover: 'assets/dit ben ik.png',                       file: 'assets/dit-ben-ik.mp3',
+  { id: 'dit-ben-ik',                   title: 'Dit ben ik',                   sub: 'Single',          cover: 'assets/dit ben ik.png',                       file: 'assets/dit-ben-ik.mp3',                  spotify: '', youtube: '',
     note: `Iedere melodie begint met een gevoel.\n\nDit ben ik is het eerste hoofdstuk van een verhaal dat recht uit het hart komt.\n\nEen nummer over jezelf durven worden.\nOver loslaten.\nOver eindelijk thuiskomen.`,
     lyrics: `Ik heb jaren rondgelopen
 met een glimlach op mijn gezicht.
@@ -816,7 +816,7 @@ want vandaag kies ik voor mij.
 Dit ben ik...
 
 En eindelijk voel ik mij vrij.` },
-  { id: 'mijn-hart-kent-de-weg',        title: 'Mijn hart kent de weg',        sub: 'Single',          cover: 'assets/mijn hart kent de weg.png',            file: 'assets/mijn-hart-kent-de-weg.mp3',
+  { id: 'mijn-hart-kent-de-weg',        title: 'Mijn hart kent de weg',        sub: 'Single',          cover: 'assets/mijn hart kent de weg.png',            file: 'assets/mijn-hart-kent-de-weg.mp3',       spotify: '', youtube: '',
     lyrics: `Ik heb wegen gevolgd die ik niet kon verklaren,
 soms door zonlicht, soms door verdriet.
 Ik dacht dat ik de richting kwijt was,
@@ -881,7 +881,7 @@ begint ons mooiste avontuur.
 Hand in hand, zij aan zij...
 
 Mijn hart kende de weg.` },
-  { id: 'als-jij-hier-niet-bent',        title: 'Als jij hier niet bent',       sub: 'Single',          cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-jij-hier-niet-bent.mp3',
+  { id: 'als-jij-hier-niet-bent',        title: 'Als jij hier niet bent',       sub: 'Single',          cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-jij-hier-niet-bent.mp3',      spotify: '', youtube: '',
     lyrics: `De klok tikt verder in een leeg huis,
 de stilte klinkt harder dan ooit.
 Ik kijk nog steeds naar jouw foto,
@@ -939,7 +939,7 @@ ook al ben jij zo ver weg.
 
 Ik mis je...
 meer dan woorden zeggen kunnen.` },
-  { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Nieuwste track',  cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',
+  { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Nieuwste track',  cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',             spotify: '', youtube: '',
     lyrics: `Ik weet nog hoe gewoon het leek,
 alsof het niets bijzonders was.
 Een gesprek, een lach, een eerste blik,
@@ -1062,12 +1062,11 @@ function renderTracklist() {
           <strong class="block font-serif text-lg lg:text-xl text-on-surface group-hover:text-primary transition-colors truncate">${s.title}</strong>
           <span class="text-xs uppercase tracking-wider ${s.file ? 'text-on-surface-variant' : 'text-primary/60'}">${s.file ? s.sub : 'Binnenkort beschikbaar'}</span>
         </div>
-        <!-- Streaming icons -->
-        <div class="hidden sm:flex items-center gap-3 text-on-surface-variant/40 shrink-0">
-          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op Spotify" class="hover:text-[#1DB954] transition-colors" title="Spotify">${svgSpotify}</a>
-          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op Apple Music" class="hover:text-white transition-colors" title="Apple Music">${svgApple}</a>
-          <a href="#" onclick="event.stopPropagation()" aria-label="${s.title} op YouTube" class="hover:text-[#FF0000] transition-colors" title="YouTube">${svgYT}</a>
-        </div>
+        <!-- Streaming icons: alleen tonen als link beschikbaar -->
+        ${(s.spotify || s.youtube) ? `<div class="hidden sm:flex items-center gap-3 text-on-surface-variant/40 shrink-0">
+          ${s.spotify ? `<a href="${s.spotify}" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="${s.title} op Spotify" class="hover:text-[#1DB954] transition-colors" title="Spotify">${svgSpotify}</a>` : ''}
+          ${s.youtube ? `<a href="${s.youtube}" target="_blank" rel="noopener" onclick="event.stopPropagation()" aria-label="${s.title} op YouTube" class="hover:text-[#FF0000] transition-colors" title="YouTube">${svgYT}</a>` : ''}
+        </div>` : ''}
         ${s.lyrics ? `
         <!-- Lyrics toggle -->
         <button onclick="toggleLyrics('${s.id}')" class="shrink-0 w-10 h-10 rounded-full border border-outline-variant/40 text-on-surface-variant flex items-center justify-center hover:border-primary hover:text-primary hover:bg-primary/5 transition-all" title="Songtekst" id="lyrics-btn-${s.id}">
