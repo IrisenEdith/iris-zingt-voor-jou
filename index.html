@@ -680,7 +680,7 @@ begint ons voor altijd met jou en mij.
 Jij bent mijn rust...
 Jij bent mijn thuis...
 Voor altijd jij en ik.` },
-  { id: 'als-het-jou-niet-was-geweest', title: 'Als het jou niet was geweest', sub: 'Demo',            cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-het-jou-niet-was-geweest.mp3',  spotify: '', youtube: '',
+  { id: 'als-het-jou-niet-was-geweest', title: 'Als het jou niet was geweest', sub: 'Derde single',    cover: 'assets/als het jou niet was geweest.png',     file: 'assets/als-het-jou-niet-was-geweest.mp3',  spotify: '', youtube: '',
     lyrics: `Ik heb wegen bewandeld die nergens leken te gaan,
 dagen gekend waarin ik mezelf niet kon verstaan.
 Ik zocht naar een antwoord dat ik niet vinden kon,
@@ -1015,6 +1015,8 @@ const ditBenIkIdx = songs.findIndex(s => s.id === 'dit-ben-ik');
 if (ditBenIkIdx > 0) songs.unshift(songs.splice(ditBenIkIdx, 1)[0]);
 const vanAlleMensenIdx = songs.findIndex(s => s.id === 'van-alle-mensen');
 if (vanAlleMensenIdx > 1) songs.splice(1, 0, songs.splice(vanAlleMensenIdx, 1)[0]);
+const alsHetJouIdx = songs.findIndex(s => s.id === 'als-het-jou-niet-was-geweest');
+if (alsHetJouIdx > 2) songs.splice(2, 0, songs.splice(alsHetJouIdx, 1)[0]);
 
 let currentIdx = -1;
 const audio = document.getElementById('audio-el');
