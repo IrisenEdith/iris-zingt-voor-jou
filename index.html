@@ -939,7 +939,7 @@ ook al ben jij zo ver weg.
 
 Ik mis je...
 meer dan woorden zeggen kunnen.` },
-  { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Nieuwste track',  cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',             spotify: '', youtube: '',
+  { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Tweede single',   cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',             spotify: '', youtube: '',
     lyrics: `Ik weet nog hoe gewoon het leek,
 alsof het niets bijzonders was.
 Een gesprek, een lach, een eerste blik,
@@ -1010,9 +1010,11 @@ Van alle mensen...
 Ben ik zo blij dat jij het bent.` },
 ];
 
-// Dit ben ik bovenaan als eerste single
+// Dit ben ik bovenaan als eerste single, Van alle mensen als tweede
 const ditBenIkIdx = songs.findIndex(s => s.id === 'dit-ben-ik');
 if (ditBenIkIdx > 0) songs.unshift(songs.splice(ditBenIkIdx, 1)[0]);
+const vanAlleMensenIdx = songs.findIndex(s => s.id === 'van-alle-mensen');
+if (vanAlleMensenIdx > 1) songs.splice(1, 0, songs.splice(vanAlleMensenIdx, 1)[0]);
 
 let currentIdx = -1;
 const audio = document.getElementById('audio-el');
