@@ -579,7 +579,7 @@ tailwind.config = {
       <p class="text-on-surface-variant text-lg">Voor optredens, huiskamerconcerten, een persoonlijk lied of gewoon hallo.</p>
     </div>
     <div class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 lg:p-14 shadow-2xl">
-      <form class="space-y-6" action="https://formspree.io/f/xzdlvojw" method="POST" id="contact-form">
+      <form class="space-y-6" id="contact-form" onsubmit="handleContact(event)">
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-xs uppercase tracking-widest font-bold mb-2 text-on-surface-variant">Naam</label>
@@ -1232,9 +1232,30 @@ function getCurrentPage() {
   return active ? active.id.replace('page-', '') : 'home';
 }
 
-function handleContact(e) {
+async function handleContact(e) {
   e.preventDefault();
-  e.target.innerHTML = '<div class="text-center py-12"><p class="font-serif text-3xl text-primary mb-4">Bedankt!</p><p class="text-on-surface-variant">Je bericht is verstuurd. Ik neem zo snel mogelijk contact op. ♡</p></div>';
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Bezig met versturen…';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formspree.io/f/xzdlvojw', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    });
+    if (res.ok) {
+      form.innerHTML = '<div class="text-center py-12"><p class="font-serif text-3xl text-primary mb-4">Bedankt!</p><p class="text-on-surface-variant">Je bericht is verstuurd. Ik neem zo snel mogelijk contact op. ♡</p></div>';
+    } else {
+      btn.textContent = 'Verstuur Bericht';
+      btn.disabled = false;
+      alert('Er ging iets mis. Probeer het opnieuw of mail naar iris@irisduym.be');
+    }
+  } catch {
+    btn.textContent = 'Verstuur Bericht';
+    btn.disabled = false;
+    alert('Er ging iets mis. Probeer het opnieuw of mail naar iris@irisduym.be');
+  }
 }
 
 // Init
