@@ -27,7 +27,7 @@
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 44'><line x1='18' y1='44' x2='18' y2='22' stroke='%23f3bc78' stroke-width='1.5'/><path d='M18 34 C12 30 8 24 10 18 C13 22 16 28 18 34Z' fill='%23f3bc78' opacity='0.5'/><path d='M18 34 C24 30 28 24 26 18 C23 22 20 28 18 34Z' fill='%23f3bc78' opacity='0.5'/><path d='M18 22 C15 16 14 10 18 4 C22 10 21 16 18 22Z' fill='%23f3bc78'/><path d='M18 20 C13 17 7 15 4 10 C8 9 14 13 18 20Z' fill='%23f3bc78' opacity='0.85'/><path d='M18 20 C23 17 29 15 32 10 C28 9 22 13 18 20Z' fill='%23f3bc78' opacity='0.85'/></svg>"/>
-<meta name="theme-color" content="#131313"/>
+<meta name="theme-color" content="#faf6ef" />
 
 <!-- Structured Data: Musician -->
 <script type="application/ld+json">
@@ -60,23 +60,23 @@ tailwind.config = {
   theme: {
     extend: {
       colors: {
-        "primary": "#f3bc78",
-        "on-primary": "#462a00",
-        "primary-container": "#c59353",
-        "secondary": "#fbba67",
-        "background": "#131313",
-        "surface": "#131313",
-        "surface-container-lowest": "#0e0e0e",
-        "surface-container-low": "#1c1b1b",
-        "surface-container": "#201f1f",
-        "surface-container-high": "#2a2a2a",
-        "surface-container-highest": "#353534",
-        "surface-variant": "#353534",
-        "surface-bright": "#3a3939",
-        "on-surface": "#e5e2e1",
-        "on-surface-variant": "#d4c4b4",
+        "primary": "#b8860b",
+        "on-primary": "#fff8ee",
+        "primary-container": "#c9960f",
+        "secondary": "#c9960f",
+        "background": "#faf6ef",
+        "surface": "#faf6ef",
+        "surface-container-lowest": "#f5efe3",
+        "surface-container-low": "#ede5d8",
+        "surface-container": "#e8dfd0",
+        "surface-container-high": "#dfd5c4",
+        "surface-container-highest": "#d4c9b6",
+        "surface-variant": "#e8dfd0",
+        "surface-bright": "#ffffff",
+        "on-surface": "#1c1208",
+        "on-surface-variant": "#5a4a38",
         "outline": "#9c8e80",
-        "outline-variant": "#504539",
+        "outline-variant": "#c9b89a",
       },
       fontFamily: {
         "serif": ["Cormorant Garamond", "Noto Serif", "serif"],
@@ -88,14 +88,14 @@ tailwind.config = {
 </script>
 <style>
   body {
-    background-color: #131313;
-    color: #e5e2e1;
+    background-color: #faf6ef;
+    color: #1c1208;
     font-family: 'Manrope', sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
   .glass {
-    background: rgba(19,19,19,0.80);
+    background: rgba(250,246,239,0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -103,7 +103,7 @@ tailwind.config = {
   .text-glow { text-shadow: 0 0 20px rgba(243,188,120,0.25); }
   .hero-bg {
     position: relative;
-    background-color: #0a0806;
+    background-color: #faf6ef;
   }
   .hero-photo {
     position: absolute;
@@ -121,15 +121,15 @@ tailwind.config = {
     left: 0;
     right: 0;
     height: 280px;
-    background: linear-gradient(to top, #131313 0%, #131313 15%, transparent 100%);
+    background: linear-gradient(to top, #faf6ef 0%, #faf6ef 15%, transparent 100%);
     z-index: 3;
     pointer-events: none;
   }
   @media (max-width: 1023px) {
     .hero-overlay {
       background:
-        linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.55) 55%, rgba(10,8,6,0.15) 100%),
-        linear-gradient(to top, #131313 0%, transparent 12%);
+        linear-gradient(to top, rgba(250,246,239,0.97) 0%, rgba(250,246,239,0.55) 55%, rgba(250,246,239,0.15) 100%),
+        linear-gradient(to top, #faf6ef 0%, transparent 12%);
     }
     .hero-photo { object-position: 65% top; }
   }
@@ -150,7 +150,7 @@ tailwind.config = {
   .gallery-img { transition: transform 0.6s ease; }
   .gallery-item:hover .gallery-img { transform: scale(1.05); }
   ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: #131313; }
+  ::-webkit-scrollbar-track { background: #faf6ef; }
   ::-webkit-scrollbar-thumb { background: #504539; border-radius: 10px; }
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -519,7 +519,7 @@ tailwind.config = {
       <div>
         <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-8 block">Het Verhaal</span>
         <p style="font-family: 'Dancing Script', cursive; font-size: 2.8rem; font-weight: 600; color: #c9a84c; line-height: 1.2; margin-bottom: 2rem;">IRIS</p>
-        <div style="font-family: 'Dancing Script', cursive; font-size: 1.35rem; line-height: 2; color: var(--color-on-surface-variant, #c4b49a);" class="space-y-2">
+        <div style="font-family: 'Dancing Script', cursive; font-size: 1.6rem; line-height: 2; color: #5a4a38;" class="space-y-2">
           <p>Muziek vond mij op het moment dat ik mezelf begon te vinden.</p>
           <p>Niet als carrière.<br>Als roeping.</p>
           <p style="margin-top: 1.5rem;">Mijn liedjes gaan over liefde die blijft,<br>over thuiskomen bij jezelf,<br>en over gevoelens waarvoor woorden soms tekortschieten.</p>
@@ -531,22 +531,19 @@ tailwind.config = {
     </div>
 
     <!-- The World of IRIS -->
-    <div class="max-w-4xl mx-auto text-center pt-16 border-t border-outline-variant/20">
-      <p class="font-serif text-primary text-xl lg:text-2xl italic mb-12 leading-relaxed">"Sommige verhalen worden niet geschreven.<br>Ze worden gezongen."</p>
-      <div class="space-y-4 text-on-surface-variant text-lg lg:text-xl leading-loose font-serif">
-        <p>Er zijn momenten in het leven waarop je voelt dat woorden alleen niet meer genoeg zijn.</p>
-        <p>Momenten waarop een herinnering, een glimlach of een traan vraagt om iets meer.<br>Om muziek.</p>
-        <p class="text-on-surface">IRIS is ontstaan vanuit precies dat gevoel.</p>
-        <p>Niet als een plan.<br>Niet als een commercieel project.<br>Maar als een droom.</p>
-        <p>Een plek waar verhalen, beelden en muziek samenkomen.<br>Een wereld waarin liefde, hoop en verbondenheid belangrijker zijn dan perfectie.</p>
-        <p>Waar iedere song begint met een gevoel.<br>En iedere bezoeker zijn eigen verhaal mag herkennen.</p>
-        <div class="h-px bg-outline-variant/20 max-w-xs mx-auto my-10"></div>
-        <p>IRIS wil naast mensen staan.<br>Soms met een glimlach.<br>Soms met een traan.<br>Maar altijd met een open hart.</p>
-        <p>Want uiteindelijk zijn we allemaal onderweg.<br>Op zoek naar iemand die ons begrijpt.<br>Op zoek naar dat ene liedje waarvan we denken:</p>
-        <p class="font-serif text-on-surface text-xl lg:text-2xl italic pt-4">"Alsof het speciaal voor mij geschreven werd."</p>
-        <div class="h-px bg-outline-variant/20 max-w-xs mx-auto my-10"></div>
-        <p class="text-on-surface text-2xl lg:text-3xl font-serif">Welkom in de wereld van IRIS.</p>
-        <p class="text-on-surface-variant pb-8">Hier worden verhalen muziek.<br>En krijgt muziek een thuis.</p>
+    <div class="mt-24 rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, #1c1208 0%, #2d1f0e 100%);">
+      <div class="max-w-3xl mx-auto text-center px-8 lg:px-16 py-20">
+        <span class="text-xs font-bold uppercase tracking-[0.3em] mb-6 block" style="color: #b8860b;">De wereld van IRIS</span>
+        <p class="font-serif text-4xl lg:text-5xl italic mb-12 leading-snug" style="color: #f5ead8;">"Sommige verhalen worden niet geschreven.<br>Ze worden gezongen."</p>
+        <div class="h-px max-w-xs mx-auto mb-12" style="background: #b8860b; opacity: 0.4;"></div>
+        <div class="space-y-6 font-serif text-lg lg:text-xl leading-relaxed" style="color: #c4b09a;">
+          <p>IRIS is ontstaan vanuit het gevoel dat woorden soms tekortschieten.<br>Dat een melodie kan zeggen wat een zin niet kan.</p>
+          <p>Een plek waar verhalen, beelden en muziek samenkomen.<br>Waar liefde, hoop en verbondenheid belangrijker zijn dan perfectie.</p>
+          <p style="color: #f5ead8;">IRIS wil naast mensen staan.<br>Soms met een glimlach. Soms met een traan.<br>Maar altijd met een open hart.</p>
+        </div>
+        <div class="h-px max-w-xs mx-auto mt-12 mb-10" style="background: #b8860b; opacity: 0.4;"></div>
+        <p class="font-serif text-2xl lg:text-3xl italic" style="color: #f5ead8;">"Alsof het speciaal voor mij geschreven werd."</p>
+        <p class="mt-8 text-sm uppercase tracking-[0.3em]" style="color: #b8860b;">Welkom in de wereld van IRIS</p>
       </div>
     </div>
   </section>
