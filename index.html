@@ -575,13 +575,15 @@ tailwind.config = {
 
 <!-- CONTACT -->
 <div class="page" id="page-contact">
-  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-4xl mx-auto min-h-screen">
+  <section class="pt-32 pb-24 px-6 lg:px-16 max-w-5xl mx-auto min-h-screen">
     <div class="text-center mb-14">
       <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-4 block">Iris – Music creator</span>
       <h2 class="font-serif text-5xl lg:text-6xl text-on-surface mb-4">Blijf dichtbij</h2>
       <p class="text-on-surface-variant text-lg">Voor een persoonlijk lied, samenwerking of gewoon hallo.</p>
     </div>
-    <div class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 lg:p-14 shadow-2xl">
+    <div class="flex flex-col lg:flex-row items-end gap-8">
+      <img src="assets/iris-mascotte-hello.png" alt="IRIS mascotte zwaait hallo" style="height:320px; width:auto;" class="object-contain drop-shadow-lg shrink-0"/>
+      <div class="flex-1 bg-surface-container border border-outline-variant/20 rounded-2xl p-8 lg:p-14 shadow-2xl w-full">
       <form class="space-y-6" id="contact-form" onsubmit="handleContact(event)">
         <div class="grid md:grid-cols-2 gap-6">
           <div>
@@ -607,6 +609,7 @@ tailwind.config = {
         <p class="text-on-surface-variant text-sm uppercase tracking-widest mb-3">Of mail direct naar</p>
         <a href="mailto:iris@irisduym.be" class="font-serif text-2xl text-primary hover:text-secondary transition-colors">iris@irisduym.be</a>
       </div>
+    </div>
     </div>
   </section>
 </div>
