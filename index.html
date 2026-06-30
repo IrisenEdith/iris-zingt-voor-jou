@@ -1340,7 +1340,15 @@ window.addEventListener('DOMContentLoaded', () => {
   // inject footer on all pages except home (home has its own)
   ['muziek','gallery','bio','contact'].forEach(id => {
     const page = document.getElementById('page-' + id);
-    if (page) page.insertAdjacentHTML('beforeend', footerHTML);
+    if (!page) return;
+    if (id === 'contact') {
+      page.insertAdjacentHTML('beforeend', footerHTML.replace(
+        '<img src="assets/iris-mascotte-small.png" alt="IRIS mascotte" style="height:280px; width:auto; padding-top:100px;" class="object-contain drop-shadow-lg">',
+        ''
+      ));
+    } else {
+      page.insertAdjacentHTML('beforeend', footerHTML);
+    }
   });
   setTimeout(initReveal, 200);
   const homeLink = document.querySelector('[data-page="home"]');
