@@ -404,15 +404,18 @@ tailwind.config = {
   </section>
 
   <!-- Newsletter -->
-  <section class="py-28 px-6 lg:px-16 bg-primary/5 text-center reveal">
-    <div class="max-w-2xl mx-auto">
-      <span class="text-xs font-bold uppercase tracking-[0.25em] text-on-surface-variant/60 mb-5 block">Iris – Music creator</span>
-      <h2 class="font-serif text-4xl lg:text-5xl text-primary mb-6 text-glow">Blijf dichtbij</h2>
-      <p class="text-on-surface-variant text-lg mb-10">Schrijf je in voor nieuws en ontvang als eerste updates over nieuwe nummers.</p>
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-primary font-serif text-xl\'>Bedankt! Je bent ingeschreven. ♡</p>'">
-        <input type="email" placeholder="Jouw e-mailadres" required class="flex-grow bg-surface-container border-b-2 border-primary/30 focus:border-primary text-on-surface px-5 py-4 outline-none transition-all rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none placeholder:text-on-surface-variant/40"/>
-        <button type="submit" class="bg-primary text-on-primary font-bold text-xs uppercase tracking-widest px-8 py-4 gold-glow hover:brightness-110 transition-all rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none">Inschrijven</button>
-      </form>
+  <section class="py-28 px-6 lg:px-16 bg-primary/5 reveal">
+    <div class="max-w-4xl mx-auto flex flex-col lg:flex-row items-center gap-10">
+      <img src="assets/iris-mascotte-roept.png" alt="Sunny met megafoon" style="height:240px; width:auto;" class="object-contain drop-shadow-lg shrink-0"/>
+      <div class="text-center lg:text-left flex-1">
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-on-surface-variant/60 mb-5 block">Iris – Music creator</span>
+        <h2 class="font-serif text-4xl lg:text-5xl text-primary mb-6 text-glow">Blijf dichtbij</h2>
+        <p class="text-on-surface-variant text-lg mb-10">Schrijf je in voor nieuws en ontvang als eerste updates over nieuwe nummers.</p>
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md" onsubmit="event.preventDefault(); this.innerHTML='<p class=\'text-primary font-serif text-xl\'>Bedankt! Je bent ingeschreven. ♡</p>'">
+          <input type="email" placeholder="Jouw e-mailadres" required class="flex-grow bg-surface-container border-b-2 border-primary/30 focus:border-primary text-on-surface px-5 py-4 outline-none transition-all rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none placeholder:text-on-surface-variant/40"/>
+          <button type="submit" class="bg-primary text-on-primary font-bold text-xs uppercase tracking-widest px-8 py-4 gold-glow hover:brightness-110 transition-all rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none">Inschrijven</button>
+        </form>
+      </div>
     </div>
   </section>
 
