@@ -636,13 +636,15 @@ tailwind.config = {
   </section>
 </div>
 
+<audio id="sunny-audio" src="assets/sunny-voice.mp3" preload="auto"></audio>
+
 <!-- Sunny Popup -->
 <div id="sunny-popup" style="position:fixed; bottom:100px; right:24px; z-index:999; display:flex; flex-direction:column; align-items:flex-end; gap:8px; opacity:0; transform:translateY(20px); transition:opacity 0.5s ease, transform 0.5s ease; pointer-events:none;">
   <div style="background:#fff8ee; border:1px solid #c9b89a; border-radius:16px 16px 4px 16px; padding:14px 18px; max-width:220px; box-shadow:0 4px 20px rgba(0,0,0,0.1); position:relative;">
     <p style="font-family:'Cormorant Garamond', Georgia, serif; font-size:15px; color:#5a4a38; line-height:1.5; margin:0;">"Hoi! Ik ben Sunny. Geniet je van de muziek van IRIS? ♡"</p>
     <button onclick="document.getElementById('sunny-popup').style.opacity='0'; document.getElementById('sunny-popup').style.pointerEvents='none';" style="position:absolute; top:6px; right:10px; background:none; border:none; color:#c9b89a; font-size:16px; cursor:pointer; line-height:1;">×</button>
   </div>
-  <img src="assets/iris-mascotte-hello.png" alt="Sunny zwaait hallo" style="height:100px; width:auto;" class="drop-shadow-lg"/>
+  <img src="assets/iris-mascotte-hello.png" alt="Sunny zwaait hallo" style="height:100px; width:auto; cursor:pointer;" class="drop-shadow-lg" onclick="document.getElementById('sunny-audio').play()" title="Klik om Sunny te horen!"/>
 </div>
 
 <script>
