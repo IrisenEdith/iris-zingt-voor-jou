@@ -342,6 +342,79 @@ tailwind.config = {
     </div>
   </section>
 
+  <!-- Uitgelicht: Jij bent vrij -->
+  <section class="relative py-0 overflow-hidden reveal" id="jij-bent-vrij-section">
+    <!-- Achtergrond met regenboog sfeer -->
+    <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, #1a1008 0%, #2d1f0e 40%, #3d2a18 60%, #1a1008 100%);"></div>
+    <div class="absolute inset-0 z-0 opacity-20" style="background: radial-gradient(ellipse at 80% 50%, #e8b86d44 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, #c0392b22 0%, transparent 50%);"></div>
+    <!-- Regenboog gloed rechts -->
+    <div class="absolute right-0 top-0 bottom-0 w-1/3 z-0 opacity-15" style="background: linear-gradient(to left, #e84393, #f97316, #eab308, #22c55e, #3b82f6, #8b5cf6); filter: blur(60px);"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 py-24 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <!-- Tekst links -->
+        <div class="order-2 lg:order-1">
+          <span class="text-amber-400/80 text-xs font-bold uppercase tracking-[0.3em] mb-4 block">Zevende single</span>
+          <h2 class="font-serif text-5xl lg:text-6xl leading-tight mb-3" style="color:#f3e8d0;">Jij bent vrij.</h2>
+
+          <!-- Pronomen animatie -->
+          <div class="mb-8 flex items-center gap-4" id="pronomen-anim">
+            <span class="font-serif text-2xl transition-all duration-1000" id="pron-hij" style="color:#9ca3af; opacity:0.5;">hij</span>
+            <span class="text-amber-400/60 text-lg">→</span>
+            <span class="font-serif text-2xl font-semibold" id="pron-zij" style="color:#f3bc78; text-shadow: 0 0 20px #f3bc7860;">zij</span>
+          </div>
+
+          <div class="space-y-5 text-lg leading-relaxed" style="color:#c9b89a;">
+            <p>Sommige nummers worden geschreven. Dit nummer <em>moest</em> er komen.</p>
+            <p>Het is het verhaal van iemand die jarenlang niet zichzelf mocht zijn — en de lange, stille reis naar wie ze altijd al was.</p>
+            <p class="italic border-l-2 pl-5" style="color:#f3e8d0; border-color:#f3bc7860;">"En nu is zij eindelijk vrij, zij mag zichzelf nu eindelijk zijn."</p>
+            <p>Voor iedereen die ooit durfde loslaten. Voor jou.</p>
+          </div>
+          <div class="mt-10 flex flex-col sm:flex-row gap-4">
+            <button onclick="playSong('jij-bent-vrij')" class="inline-flex items-center gap-3 px-8 py-4 font-bold uppercase text-sm tracking-widest transition-all active:scale-95 rounded-sm" style="background:#f3bc78; color:#1a1008; box-shadow: 0 0 30px #f3bc7840;">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+              Luister nu
+            </button>
+            <button onclick="showPage('muziek')" class="inline-flex items-center gap-3 px-8 py-4 font-bold uppercase text-sm tracking-widest transition-all rounded-sm" style="border:1px solid #f3bc7840; color:#f3bc78;">
+              Alle muziek
+            </button>
+          </div>
+        </div>
+        <!-- Cover rechts -->
+        <div class="order-1 lg:order-2 relative group cursor-pointer" onclick="playSong('jij-bent-vrij')">
+          <div class="relative overflow-hidden rounded-2xl shadow-2xl" style="box-shadow: 0 0 80px #f3bc7820, 0 25px 50px rgba(0,0,0,0.5);">
+            <img src="assets/jij-bent-vrij.png" alt="Jij bent vrij - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div class="w-20 h-20 rounded-full flex items-center justify-center" style="background:#f3bc78; box-shadow:0 0 30px #f3bc78;">
+                <span class="material-symbols-outlined text-5xl" style="color:#1a1008; font-variation-settings:'FILL' 1;">play_arrow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    // Pronomen animatie: "hij" vervaagt, "zij" licht op
+    (function() {
+      const section = document.getElementById('jij-bent-vrij-section');
+      let triggered = false;
+      const observer = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !triggered) {
+          triggered = true;
+          setTimeout(() => {
+            const hij = document.getElementById('pron-hij');
+            const zij = document.getElementById('pron-zij');
+            if (hij) { hij.style.opacity = '0'; hij.style.transform = 'translateX(-10px)'; }
+            if (zij) { zij.style.textShadow = '0 0 40px #f3bc78, 0 0 80px #f3bc7860'; zij.style.fontSize = '2rem'; }
+          }, 800);
+        }
+      }, { threshold: 0.3 });
+      observer.observe(section);
+    })();
+    </script>
+  </section>
+
   <!-- Nieuwste Muziek -->
   <section class="py-24 bg-background reveal">
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
@@ -987,6 +1060,56 @@ ook al ben jij zo ver weg.
 
 Ik mis je...
 meer dan woorden zeggen kunnen.` },
+  { id: 'jij-bent-vrij',                title: 'Jij bent vrij',                sub: 'Zevende single',  cover: 'assets/jij-bent-vrij.png',                    file: 'assets/jij-bent-vrij.mp3',               spotify: '', youtube: '',
+    note: `Een nummer over de langste reis die iemand kan maken.\n\nVan wie je was, naar wie je altijd al bent geweest.\n\nVoor iedereen die ooit durfde loslaten.`,
+    lyrics: `Terwijl de weduwe haar man kust,
+En het kleine meisje wijn lust,
+Terwijl de slager brood bakt,
+En de zee langzaam de zon inzakt.
+Is hij nog niet vrij,
+En mag hij zichzelf niet eens zijn.
+De mensen zeggen:
+"Het is fout, het is raar, hij zit niet goed in mekaar."
+
+Hij moet eindelijk aanvaarden wie hij is,
+Hij moet leren leven met het gemis van haar.
+Hij moet blijven vechten,
+Doorgaan, alles laten staan.
+
+Terwijl de jonge heer, halfnaakt,
+De gebroken scherven achterlaat.
+Terwijl gedachten maskers laten ontstaan,
+En hij de tranen weer moet tegengaan.
+Is hij nog niet vrij,
+En mag hij zichzelf niet eens zijn.
+De mensen zeggen:
+"Het is fout, het is raar, het is raar, hij zit niet goed in mekaar."
+
+Hij moet eindelijk aanvaarden wie hij is,
+Hij moet leren leven met het gemis van haar.
+Hij moet blijven vechten,
+Doorgaan, alles laten staan.
+
+Want wanneer hij daar als vrouw staat,
+En hij zijn lichaam achterlaat,
+Is het de weduwe die haar man mist,
+En de kleine meid die gelukkig is.
+Dan is het de bakker die brood bakt,
+En de zon die langzaam de zee inzakt.
+
+Hij moet eindelijk aanvaarden wie hij is,
+Hij moet leren leven met het gemis van haar.
+Hij moet blijven vechten,
+Doorgaan, alles laten staan.
+
+En nu is zij eindelijk vrij,
+Zij mag zichzelf nu eindelijk zijn.
+Het is niet fout, niet raar, zij zit goed in mekaar.
+De stap naar de waarheid is nu gedaan.
+Haar wens is nu eindelijk waar.
+De vrouw die zij is, staat nu klaar.
+Eindelijk mag ze zichzelf nu zijn.
+Zij is nu voor altijd vrij.` },
   { id: 'van-alle-mensen',              title: 'Van alle mensen',              sub: 'Tweede single',   cover: 'assets/van alle mensen.png',                  file: 'assets/van-alle-mensen.mp3',             spotify: '', youtube: '',
     lyrics: `Ik weet nog hoe gewoon het leek,
 alsof het niets bijzonders was.
