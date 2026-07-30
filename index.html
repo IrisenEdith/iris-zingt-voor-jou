@@ -415,6 +415,49 @@ tailwind.config = {
     </script>
   </section>
 
+  <!-- Nieuws -->
+  <section class="py-24 bg-surface-container-lowest reveal" id="nieuws">
+    <div class="max-w-7xl mx-auto px-6 lg:px-16">
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-primary text-xs font-bold uppercase tracking-[0.25em]">Nieuws</span>
+        <div class="h-px w-10 bg-primary/40"></div>
+      </div>
+      <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mb-14">Laatste updates</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="nieuws-grid">
+
+        <!-- Bericht 1 -->
+        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
+          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juli 2026</time>
+          <h3 class="font-serif text-2xl text-on-surface leading-snug">Jij bent vrij — zevende single is uit!</h3>
+          <p class="text-on-surface-variant leading-relaxed flex-1">Het langverwachte nieuwe nummer van IRIS is beschikbaar. "Jij bent vrij" is een emotioneel en krachtig nummer over de moed om jezelf te zijn — het meest persoonlijke werk tot nu toe.</p>
+          <button onclick="playSong('jij-bent-vrij')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
+            <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+            Luister nu
+          </button>
+        </article>
+
+        <!-- Bericht 2 -->
+        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
+          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juni 2026</time>
+          <h3 class="font-serif text-2xl text-on-surface leading-snug">irisduym.be — de officiële website is live</h3>
+          <p class="text-on-surface-variant leading-relaxed flex-1">IRIS heeft nu een eigen thuis op het web. Op irisduym.be vind je alle muziek, de gallerij, het verhaal achter IRIS en een contactformulier voor samenwerkingen.</p>
+          <span class="self-start text-sm font-bold text-primary/50 uppercase tracking-widest">Je bent er al 🎵</span>
+        </article>
+
+        <!-- Bericht 3 -->
+        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
+          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Binnenkort</time>
+          <h3 class="font-serif text-2xl text-on-surface leading-snug">Meer muziek is onderweg</h3>
+          <p class="text-on-surface-variant leading-relaxed flex-1">IRIS werkt aan nieuwe nummers. Schrijf je in op de nieuwsbrief en wees als eerste op de hoogte wanneer een nieuwe single uitkomt.</p>
+          <button onclick="showPage('contact')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline">
+            Schrijf je in →
+          </button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Nieuwste Muziek -->
   <section class="py-24 bg-background reveal">
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
