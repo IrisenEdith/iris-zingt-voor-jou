@@ -26,7 +26,7 @@ const images = fs.readdirSync(assetsDir).filter(f => /\.(png|jpg|jpeg)$/i.test(f
     const ext = path.extname(file).toLowerCase();
     const tmpPath = filePath + '.tmp';
 
-    let pipeline = sharp(filePath).resize({ width: MAX_WIDTH, withoutEnlargement: true });
+    let pipeline = sharp(filePath).rotate().resize({ width: MAX_WIDTH, withoutEnlargement: true });
 
     if (ext === '.jpg' || ext === '.jpeg') {
       pipeline = pipeline.jpeg({ quality: QUALITY, progressive: true });
