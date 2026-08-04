@@ -596,7 +596,7 @@ tailwind.config = {
 
     <!-- Tracklist -->
     <div class="flex flex-col lg:flex-row gap-10 items-start">
-      <div class="flex flex-col items-center justify-center shrink-0 lg:sticky lg:top-32">
+      <div class="hidden lg:flex flex-col items-center justify-center shrink-0 lg:sticky lg:top-32">
         <img src="assets/iris-mascotte-geniet.png" alt="Sunny geniet van muziek" style="height:320px; width:auto;" class="object-contain drop-shadow-lg"/>
         <p class="font-serif text-on-surface-variant italic text-center mt-4 text-base max-w-[180px]">"Hoi, ik ben Sunny en ik ben het muziekmaatje van IRIS!"</p>
       </div>
@@ -1299,14 +1299,14 @@ function renderTracklist() {
 
   el.innerHTML = songs.map((s, i) => `
     <div class="rounded-xl overflow-hidden" id="track-wrap-${s.id}">
-      <div class="track-row group flex items-center gap-4 lg:gap-6 p-4 lg:p-5 hover:bg-surface-container transition-all" id="track-${s.id}">
-        <!-- Nummer -->
-        <span class="track-num text-on-surface-variant/40 text-sm font-bold w-6 text-center shrink-0 group-hover:hidden">${i + 1}</span>
-        <button class="track-play hidden group-hover:flex w-6 items-center justify-center shrink-0 text-primary" onclick="playSong('${s.id}')">
+      <div class="track-row group flex items-center gap-2 lg:gap-6 p-3 lg:p-5 hover:bg-surface-container transition-all" id="track-${s.id}">
+        <!-- Nummer: verberg op mobiel -->
+        <span class="track-num hidden lg:block text-on-surface-variant/40 text-sm font-bold w-6 text-center shrink-0 group-hover:hidden">${i + 1}</span>
+        <button class="track-play hidden group-hover:lg:flex w-6 items-center justify-center shrink-0 text-primary" onclick="playSong('${s.id}')">
           <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
         </button>
         <!-- Cover -->
-        <div class="w-14 h-14 lg:w-16 lg:h-16 rounded-lg overflow-hidden shrink-0 shadow-md ${s.file ? 'cursor-pointer' : 'opacity-60'}" ${s.file ? `onclick="playSong('${s.id}')"` : ''}>
+        <div class="w-10 h-10 lg:w-16 lg:h-16 rounded-lg overflow-hidden shrink-0 shadow-md ${s.file ? 'cursor-pointer' : 'opacity-60'}" ${s.file ? `onclick="playSong('${s.id}')"` : ''}>
           <img src="${s.cover}" alt="${s.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
         </div>
         <!-- Info -->
