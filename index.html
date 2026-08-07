@@ -422,51 +422,147 @@ tailwind.config = {
         <span class="text-primary text-xs font-bold uppercase tracking-[0.25em]">Nieuws</span>
         <div class="h-px w-10 bg-primary/40"></div>
       </div>
-      <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mb-14">Laatste updates</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="nieuws-grid">
-
-        <!-- Bericht 1 -->
-        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
-          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juli 2026</time>
-          <h3 class="font-serif text-2xl text-on-surface leading-snug">Jij bent vrij — geïnspireerd door Femke</h3>
-          <p class="text-on-surface-variant leading-relaxed flex-1">De zevende single van IRIS is uit. "Jij bent vrij" is een persoonlijk en emotioneel nummer over de moed om jezelf te zijn. Het werd geïnspireerd door "Vrij" van de destijds 16-jarige Femke — zelf gecomponeerd naar aanleiding van het verhaal van Lena die Luka werd. Met haar debuutsingle wilde Femke transgenders en hun gevoelens uit de taboesfeer bevrijden. Dat lied raakte Iris zo diep, dat ze haar eigen verhaal schreef.</p>
-          <div class="flex flex-col gap-3">
-            <button onclick="playSong('jij-bent-vrij')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
-              <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">play_arrow</span>
-              Luister naar Jij bent vrij
-            </button>
-            <a href="https://youtu.be/L0VKoNywKsU?si=2QdLBsDQGawhhnPr" target="_blank" rel="noopener" class="self-start text-sm font-bold text-on-surface-variant/60 uppercase tracking-widest hover:text-primary hover:underline transition-colors flex items-center gap-2">
-              <span class="material-symbols-outlined text-base">open_in_new</span>
-              Beluister "Vrij" van Femke
-            </a>
-          </div>
-        </article>
-
-        <!-- Bericht 2 -->
-        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
-          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juni 2026</time>
-          <h3 class="font-serif text-2xl text-on-surface leading-snug">irisduym.be is live — dankzij NovaDesign</h3>
-          <p class="text-on-surface-variant leading-relaxed flex-1">IRIS heeft nu een eigen thuis op het web. De website werd met veel zorg en passie gebouwd door <strong class="text-on-surface">NovaDesign</strong>. Het resultaat? Een warme, filmische plek die perfect bij de muziek van IRIS past. Heel erg bedankt!</p>
-          <a href="https://novadesign-be.netlify.app/" target="_blank" rel="noopener" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
-            <span class="material-symbols-outlined text-base">open_in_new</span>
-            Ontdek NovaDesign
-          </a>
-        </article>
-
-        <!-- Bericht 3 -->
-        <article class="bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors">
-          <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Augustus 2026</time>
-          <h3 class="font-serif text-2xl text-on-surface leading-snug">Achter de schermen – Hoe ontstaat een nummer?</h3>
-          <p class="text-on-surface-variant leading-relaxed flex-1">Ik begin bijna altijd met een gevoel. Iets wat ik heb meegemaakt, een herinnering, of een emotie die ik maar niet loslaat. Dan schrijf ik stukjes tekst op — soms slechts één zin die dagenlang in mijn hoofd blijft hangen. Pas daarna zoek ik een melodie die dat gevoel versterkt. Omdat ik geen traditionele muzikant ben, werk ik met moderne tools om de muziek vorm te geven. Maar elk woord, elke keuze en de emotie achter het nummer komen volledig van mij. Ik slijp soms weken aan een nummer — verander woorden, probeer melodieën, luister tientallen keren terug — tot het écht goed voelt. Pas dan is het voor mij af.</p>
-          <p class="text-on-surface-variant leading-relaxed text-sm italic">Waarom in het Nederlands? Omdat emoties voor mij het eerlijkst klinken in mijn moedertaal. Ik hoop dat luisteraars zich daardoor gemakkelijker herkennen in mijn muziek.</p>
-          <button onclick="showPage('muziek')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline">
-            Beluister de muziek →
+      <div class="flex items-center justify-between mb-14">
+        <h2 class="font-serif text-4xl lg:text-5xl text-on-surface">Laatste updates</h2>
+        <div class="flex items-center gap-3">
+          <button id="nieuws-prev" onclick="nieuwsCarousel(-1)" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center hover:border-primary/60 hover:text-primary transition-colors text-on-surface-variant" aria-label="Vorige">
+            <span class="material-symbols-outlined text-xl">chevron_left</span>
           </button>
-        </article>
-
+          <span id="nieuws-indicator" class="text-xs text-on-surface-variant/60 font-bold tracking-widest">1 / 4</span>
+          <button id="nieuws-next" onclick="nieuwsCarousel(1)" class="w-10 h-10 rounded-full border border-outline-variant/40 flex items-center justify-center hover:border-primary/60 hover:text-primary transition-colors text-on-surface-variant" aria-label="Volgende">
+            <span class="material-symbols-outlined text-xl">chevron_right</span>
+          </button>
+        </div>
       </div>
+
+      <!-- Carrousel wrapper -->
+      <div class="overflow-hidden">
+        <div id="nieuws-track" class="flex gap-8 transition-transform duration-500 ease-in-out">
+
+          <!-- Bericht 1 — nieuwste eerst -->
+          <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
+            <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Augustus 2026</time>
+            <h3 class="font-serif text-2xl text-on-surface leading-snug">Achter de schermen – Hoe ontstaat een nummer?</h3>
+            <p class="text-on-surface-variant leading-relaxed flex-1">Ik begin bijna altijd met een gevoel. Iets wat ik heb meegemaakt, een herinnering, of een emotie die ik maar niet loslaat. Dan schrijf ik stukjes tekst op — soms slechts één zin die dagenlang in mijn hoofd blijft hangen. Pas daarna zoek ik een melodie die dat gevoel versterkt. Omdat ik geen traditionele muzikant ben, werk ik met moderne tools om de muziek vorm te geven. Maar elk woord, elke keuze en de emotie achter het nummer komen volledig van mij. Ik slijp soms weken aan een nummer — verander woorden, probeer melodieën, luister tientallen keren terug — tot het écht goed voelt. Pas dan is het voor mij af.</p>
+            <p class="text-on-surface-variant leading-relaxed text-sm italic">Waarom in het Nederlands? Omdat emoties voor mij het eerlijkst klinken in mijn moedertaal. Ik hoop dat luisteraars zich daardoor gemakkelijker herkennen in mijn muziek.</p>
+            <button onclick="showPage('muziek')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline">
+              Beluister de muziek →
+            </button>
+          </article>
+
+          <!-- Bericht 2 -->
+          <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
+            <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juli 2026</time>
+            <h3 class="font-serif text-2xl text-on-surface leading-snug">Jij bent vrij — geïnspireerd door Femke</h3>
+            <p class="text-on-surface-variant leading-relaxed flex-1">De zevende single van IRIS is uit. "Jij bent vrij" is een persoonlijk en emotioneel nummer over de moed om jezelf te zijn. Het werd geïnspireerd door "Vrij" van de destijds 16-jarige Femke — zelf gecomponeerd naar aanleiding van het verhaal van Lena die Luka werd. Met haar debuutsingle wilde Femke transgenders en hun gevoelens uit de taboesfeer bevrijden. Dat lied raakte Iris zo diep, dat ze haar eigen verhaal schreef.</p>
+            <div class="flex flex-col gap-3">
+              <button onclick="playSong('jij-bent-vrij')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+                Luister naar Jij bent vrij
+              </button>
+              <a href="https://youtu.be/L0VKoNywKsU?si=2QdLBsDQGawhhnPr" target="_blank" rel="noopener" class="self-start text-sm font-bold text-on-surface-variant/60 uppercase tracking-widest hover:text-primary hover:underline transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">open_in_new</span>
+                Beluister "Vrij" van Femke
+              </a>
+            </div>
+          </article>
+
+          <!-- Bericht 3 -->
+          <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
+            <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juni 2026</time>
+            <h3 class="font-serif text-2xl text-on-surface leading-snug">irisduym.be is live — dankzij NovaDesign</h3>
+            <p class="text-on-surface-variant leading-relaxed flex-1">IRIS heeft nu een eigen thuis op het web. De website werd met veel zorg en passie gebouwd door <strong class="text-on-surface">NovaDesign</strong>. Het resultaat? Een warme, filmische plek die perfect bij de muziek van IRIS past. Heel erg bedankt!</p>
+            <a href="https://novadesign-be.netlify.app/" target="_blank" rel="noopener" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">open_in_new</span>
+              Ontdek NovaDesign
+            </a>
+          </article>
+
+          <!-- Bericht 4 -->
+          <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
+            <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Binnenkort</time>
+            <h3 class="font-serif text-2xl text-on-surface leading-snug">Meer muziek is onderweg</h3>
+            <p class="text-on-surface-variant leading-relaxed flex-1">IRIS werkt aan nieuwe nummers. Schrijf je in op de nieuwsbrief en wees als eerste op de hoogte wanneer een nieuwe single uitkomt.</p>
+            <button onclick="showPage('contact')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline">
+              Schrijf je in →
+            </button>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Dots -->
+      <div class="flex justify-center gap-2 mt-8" id="nieuws-dots"></div>
+
     </div>
   </section>
+
+  <script>
+    (function() {
+      var current = 0;
+      var perPage = 3;
+
+      function getCards() { return document.querySelectorAll('.nieuws-card'); }
+      function getTrack() { return document.getElementById('nieuws-track'); }
+
+      function getPerPage() {
+        return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+      }
+
+      function buildDots(total, pages) {
+        var dots = document.getElementById('nieuws-dots');
+        if (!dots) return;
+        dots.innerHTML = '';
+        for (var i = 0; i < pages; i++) {
+          var d = document.createElement('button');
+          d.className = 'w-2 h-2 rounded-full transition-all ' + (i === current ? 'bg-primary w-6' : 'bg-primary/30');
+          d.setAttribute('aria-label', 'Pagina ' + (i+1));
+          d.setAttribute('data-i', i);
+          d.onclick = (function(idx){ return function(){ goTo(idx); }; })(i);
+          dots.appendChild(d);
+        }
+      }
+
+      function update() {
+        perPage = getPerPage();
+        var cards = getCards();
+        var total = cards.length;
+        var pages = Math.ceil(total / perPage);
+        if (current >= pages) current = pages - 1;
+
+        var cardWidth = cards[0] ? cards[0].offsetWidth : 0;
+        var gap = 32;
+        var offset = current * perPage * (cardWidth + gap);
+        getTrack().style.transform = 'translateX(-' + offset + 'px)';
+
+        cards.forEach(function(c, i) {
+          var cardWidth100 = (100 / perPage) - (gap * (perPage-1) / perPage / (getTrack().offsetWidth / 100));
+          c.style.width = 'calc(' + (100/perPage) + '% - ' + (gap*(perPage-1)/perPage) + 'px)';
+        });
+
+        var ind = document.getElementById('nieuws-indicator');
+        if (ind) ind.textContent = (current+1) + ' / ' + pages;
+
+        buildDots(total, pages);
+
+        document.getElementById('nieuws-prev').style.opacity = current === 0 ? '0.3' : '1';
+        document.getElementById('nieuws-next').style.opacity = current >= pages-1 ? '0.3' : '1';
+      }
+
+      function goTo(idx) {
+        var cards = getCards();
+        var pages = Math.ceil(cards.length / getPerPage());
+        current = Math.max(0, Math.min(idx, pages-1));
+        update();
+      }
+
+      window.nieuwsCarousel = function(dir) { goTo(current + dir); };
+
+      window.addEventListener('resize', function(){ current = 0; update(); });
+      document.addEventListener('DOMContentLoaded', function(){ update(); });
+      setTimeout(update, 100);
+    })();
+  </script>
 
   <!-- Nieuwste Muziek -->
   <section class="py-24 bg-background reveal">
