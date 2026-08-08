@@ -558,7 +558,12 @@ tailwind.config = {
 
       window.nieuwsCarousel = function(dir) { goTo(current + dir); };
 
-      window.addEventListener('resize', function(){ current = 0; update(); });
+      var lastWidth = window.innerWidth;
+      window.addEventListener('resize', function(){
+        var newWidth = window.innerWidth;
+        if (Math.abs(newWidth - lastWidth) > 50) { current = 0; lastWidth = newWidth; }
+        update();
+      });
       document.addEventListener('DOMContentLoaded', function(){ update(); });
       setTimeout(update, 100);
     })();
