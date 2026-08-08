@@ -147,34 +147,51 @@ tailwind.config = {
   .audio-dock.visible { transform: translateY(0); }
   .drawer { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
   .drawer.open { transform: translateX(0); }
-  /* Gallery masonry */
-  .gal-grid { columns: 2; column-gap: 0.75rem; }
-  @media (min-width: 768px) { .gal-grid { columns: 3; column-gap: 1rem; } }
-  .gal-thumb {
-    break-inside: avoid;
-    margin-bottom: 0.75rem;
-    position: relative;
-    border-radius: 0.75rem;
-    overflow: hidden;
+  /* Polaroid gallery */
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+  .polaroid-stage {
+    background: linear-gradient(145deg, #ede5d8 0%, #dfd5c4 100%);
+    border-radius: 1.5rem;
+    padding: 3rem 1.5rem 3.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem 1.5rem;
+    perspective: 1000px;
+    min-height: 55vh;
+  }
+  .polaroid {
+    background: #fffef9;
+    padding: 10px 10px 46px;
+    box-shadow: 0 6px 22px rgba(28,18,8,0.22), 0 2px 5px rgba(28,18,8,0.1);
     cursor: pointer;
+    transform-style: preserve-3d;
+    position: relative;
+    flex-shrink: 0;
+    transition: box-shadow 0.35s ease;
   }
-  .gal-thumb img { width: 100%; height: auto; display: block; transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); }
-  .gal-thumb:hover img { transform: scale(1.06); }
-  .gal-thumb-overlay {
-    position: absolute; inset: 0;
-    background: rgba(184,134,11,0.25);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s ease;
+  .polaroid img {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    pointer-events: none;
   }
-  .gal-thumb-overlay span {
-    width: 3rem; height: 3rem; border-radius: 50%;
-    background: rgba(255,248,238,0.9);
-    display: flex; align-items: center; justify-content: center;
-    color: #b8860b; font-size: 1.2rem;
-    transform: scale(0.7); transition: transform 0.3s ease;
+  .polaroid:nth-child(2) img,
+  .polaroid:nth-child(4) img { object-position: center top; }
+  .polaroid-caption {
+    position: absolute;
+    bottom: 10px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 1.05rem;
+    color: #5a4a38;
   }
-  .gal-thumb:hover .gal-thumb-overlay { opacity: 1; }
-  .gal-thumb:hover .gal-thumb-overlay span { transform: scale(1); }
+  @media (max-width: 640px) {
+    .polaroid img { width: 130px; height: 130px; }
+    .polaroid-stage { gap: 1.5rem 1rem; padding: 2rem 1rem 2.5rem; }
+  }
   /* Lightbox */
   #gal-lightbox {
     position: fixed; inset: 0; z-index: 9999;
@@ -813,34 +830,34 @@ tailwind.config = {
       <span class="text-primary text-xs font-bold uppercase tracking-[0.25em] mb-3 block">Beelden &amp; Herinneringen</span>
       <h2 class="font-serif text-5xl lg:text-6xl text-on-surface">Gallery</h2>
     </div>
-    <div class="gal-grid">
-      <div class="gal-thumb" onclick="galOpen(0)">
+    <div class="polaroid-stage">
+      <div class="polaroid" data-rot="-4" onclick="galOpen(0)">
         <img src="assets/iris-op-reis.png" alt="Iris op reis" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Op reis ✈️</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(1)">
+      <div class="polaroid" data-rot="6" onclick="galOpen(1)">
         <img src="assets/iris-verjaardag.jpg" alt="Verjaardag" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Verjaardag 🥂</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(2)">
+      <div class="polaroid" data-rot="-7" onclick="galOpen(2)">
         <img src="assets/malta-sunset.png" alt="Malta zonsondergang" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Malta 🌅</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(3)">
+      <div class="polaroid" data-rot="3" onclick="galOpen(3)">
         <img src="assets/iris-in-malaga.jpg" alt="Iris in Málaga" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Málaga 🌵</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(4)">
+      <div class="polaroid" data-rot="-5" onclick="galOpen(4)">
         <img src="assets/iris-malta.jpg" alt="Iris Malta" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Malta 🌊</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(5)">
+      <div class="polaroid" data-rot="8" onclick="galOpen(5)">
         <img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Op de dijk 🌬️</span>
       </div>
-      <div class="gal-thumb" onclick="galOpen(6)">
+      <div class="polaroid" data-rot="-3" onclick="galOpen(6)">
         <img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" loading="lazy"/>
-        <div class="gal-thumb-overlay"><span>+</span></div>
+        <span class="polaroid-caption">Malta rotsen 🪨</span>
       </div>
     </div>
 
@@ -852,6 +869,31 @@ tailwind.config = {
       <button id="lb-next" onclick="event.stopPropagation(); galNav(1)">›</button>
     </div>
     <script>
+      // Polaroid tilt effect
+      document.querySelectorAll('.polaroid').forEach(function(card) {
+        var rot = parseFloat(card.dataset.rot || '0');
+        card.style.transform = 'rotate(' + rot + 'deg)';
+
+        card.addEventListener('mousemove', function(e) {
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+          var y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+          var tiltX = y * -14;
+          var tiltY = x * 14;
+          card.style.transform = 'translateY(-22px) scale(1.1) rotateX(' + tiltX + 'deg) rotateY(' + tiltY + 'deg)';
+          card.style.boxShadow = '0 32px 70px rgba(28,18,8,0.45), 0 8px 20px rgba(28,18,8,0.2)';
+          card.style.zIndex = '50';
+          card.style.transition = 'box-shadow 0.2s ease';
+        });
+
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = 'rotate(' + rot + 'deg)';
+          card.style.boxShadow = '';
+          card.style.zIndex = '';
+          card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease';
+        });
+      });
+
       var galPhotos = [
         'assets/iris-op-reis.png',
         'assets/iris-verjaardag.jpg',
