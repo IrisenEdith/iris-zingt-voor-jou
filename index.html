@@ -161,21 +161,6 @@ tailwind.config = {
   }
   .gallery-item:hover::after { opacity: 1; }
   .gallery-item:hover .gallery-img { transform: scale(1.08); }
-  .gallery-label {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 1.25rem 1.5rem;
-    color: #fff8ee;
-    font-family: var(--font-serif, Georgia, serif);
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-  .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-track { background: #faf6ef; }
   @keyframes shimmer {
@@ -780,34 +765,28 @@ tailwind.config = {
       <!-- Rij 1: één brede foto -->
       <div class="gallery-item overflow-hidden rounded-2xl h-[55vh] lg:h-[70vh]">
         <img src="assets/iris-op-reis.png" alt="Iris op reis" class="gallery-img w-full h-full object-cover" loading="lazy"/>
-        <span class="gallery-label">Op reis ✈️</span>
       </div>
       <!-- Rij 2: twee gelijke foto's -->
       <div class="grid grid-cols-2 gap-4">
         <div class="gallery-item overflow-hidden rounded-2xl h-[40vh] lg:h-[50vh]">
           <img src="assets/malta-sunset.png" alt="Malta zonsondergang" class="gallery-img w-full h-full object-cover" loading="lazy"/>
-          <span class="gallery-label">Malta zonsondergang 🌅</span>
         </div>
         <div class="gallery-item overflow-hidden rounded-2xl h-[40vh] lg:h-[50vh]">
           <img src="assets/iris-malta.jpg" alt="Iris Malta" class="gallery-img w-full h-full object-cover" loading="lazy"/>
-          <span class="gallery-label">Malta 🌊</span>
         </div>
       </div>
       <!-- Rij 3: twee gelijke foto's -->
       <div class="grid grid-cols-2 gap-4">
         <div class="gallery-item overflow-hidden rounded-2xl h-[40vh] lg:h-[50vh]">
           <img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" class="gallery-img w-full h-full object-cover" loading="lazy"/>
-          <span class="gallery-label">Op de dijk 🌬️</span>
         </div>
         <div class="gallery-item overflow-hidden rounded-2xl h-[40vh] lg:h-[50vh]">
           <img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" class="gallery-img w-full h-full object-cover" loading="lazy"/>
-          <span class="gallery-label">Malta rotsen 🪨</span>
         </div>
       </div>
       <!-- Rij 4: nieuwe foto Málaga -->
       <div class="gallery-item overflow-hidden rounded-2xl h-[55vh] lg:h-[70vh]">
-        <img src="assets/iris-in-malaga.jpg" alt="Iris in Málaga" class="gallery-img w-full h-full object-cover object-top" loading="lazy"/>
-        <span class="gallery-label">Málaga 🌵</span>
+        <img src="assets/iris-in-malaga.jpg" alt="Iris in Málaga" class="gallery-img w-full h-full object-cover object-bottom" loading="lazy"/>
       </div>
     </div>
   </section>
