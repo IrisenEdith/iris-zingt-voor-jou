@@ -164,7 +164,7 @@ tailwind.config = {
   }
   .polaroid {
     background: #fffef9;
-    padding: 10px 10px 46px;
+    padding: 10px 10px 14px;
     box-shadow: 0 6px 22px rgba(28,18,8,0.22), 0 2px 5px rgba(28,18,8,0.1);
     cursor: pointer;
     transform-style: preserve-3d;
@@ -181,14 +181,6 @@ tailwind.config = {
   }
   .polaroid:nth-child(2) img { object-position: center 15%; }
   .polaroid:nth-child(4) img { object-position: center 15%; }
-  .polaroid-caption {
-    position: absolute;
-    bottom: 10px; left: 0; right: 0;
-    text-align: center;
-    font-family: 'Caveat', cursive;
-    font-size: 1.05rem;
-    color: #5a4a38;
-  }
   @media (max-width: 640px) {
     .polaroid img { width: 130px; height: 130px; }
     .polaroid-stage { gap: 1.5rem 1rem; padding: 2rem 1rem 2.5rem; }
@@ -834,31 +826,24 @@ tailwind.config = {
     <div class="polaroid-stage">
       <div class="polaroid" data-rot="-4" onclick="galOpen(0)">
         <img src="assets/iris-op-reis.png" alt="Iris op reis" loading="lazy"/>
-        <span class="polaroid-caption">Op reis ✈️</span>
       </div>
       <div class="polaroid" data-rot="6" onclick="galOpen(1)">
         <img src="assets/iris-verjaardag.jpg" alt="Verjaardag" loading="lazy"/>
-        <span class="polaroid-caption">Verjaardag 🥂</span>
       </div>
       <div class="polaroid" data-rot="-7" onclick="galOpen(2)">
         <img src="assets/malta-sunset.png" alt="Malta zonsondergang" loading="lazy"/>
-        <span class="polaroid-caption">Malta 🌅</span>
       </div>
       <div class="polaroid" data-rot="3" onclick="galOpen(3)">
         <img src="assets/iris-in-malaga.jpg" alt="Iris in Málaga" loading="lazy"/>
-        <span class="polaroid-caption">Málaga 🌵</span>
       </div>
       <div class="polaroid" data-rot="-5" onclick="galOpen(4)">
         <img src="assets/iris-malta.jpg" alt="Iris Malta" loading="lazy"/>
-        <span class="polaroid-caption">Malta 🌊</span>
       </div>
       <div class="polaroid" data-rot="8" onclick="galOpen(5)">
         <img src="assets/iris-op-de-dijk.png" alt="Iris op de dijk" loading="lazy"/>
-        <span class="polaroid-caption">Op de dijk 🌬️</span>
       </div>
       <div class="polaroid" data-rot="-3" onclick="galOpen(6)">
         <img src="assets/iris-malta-rocks.jpg" alt="Malta rotsen" loading="lazy"/>
-        <span class="polaroid-caption">Malta rotsen 🪨</span>
       </div>
     </div>
 
