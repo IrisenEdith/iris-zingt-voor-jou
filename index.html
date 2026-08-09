@@ -143,8 +143,8 @@ tailwind.config = {
   .nav-link { position: relative; }
   .nav-link.active-nav { color: #f3bc78; }
   .nav-link.active-nav::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: #f3bc78; }
-  .audio-dock { transform: translateY(120%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
-  .audio-dock.visible { transform: translateY(0); }
+  .audio-dock { transform: translateY(200%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); visibility: hidden; }
+  .audio-dock.visible { transform: translateY(0); visibility: visible; }
   .drawer { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
   .drawer.open { transform: translateX(0); }
   /* Polaroid gallery */
