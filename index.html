@@ -706,6 +706,14 @@ tailwind.config = {
             <span class="material-symbols-outlined text-3xl sm:text-5xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
           </div>
         </div>
+        <!-- Knop na afloop video -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-4" id="video-end-overlay" style="display:none!important; background:rgba(10,7,2,0.7);">
+          <p class="font-serif text-2xl sm:text-3xl text-white text-center px-4">Beluister nu mijn eerste single</p>
+          <button onclick="playSong('dit-ben-ik'); document.getElementById('video-end-overlay').style.setProperty('display','none','important');" class="flex items-center gap-3 px-8 py-4 rounded-full font-bold uppercase text-sm tracking-widest gold-glow transition-all hover:scale-105 active:scale-95" style="background:#b8860b; color:#faf6ef;">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+            Dit ben ik
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -1691,6 +1699,14 @@ function toggleVideo() {
   if (v.paused) { v.play(); overlay.style.display = 'none'; }
   else { v.pause(); overlay.style.display = 'flex'; }
 }
+document.addEventListener('DOMContentLoaded', function() {
+  const v = document.getElementById('hero-video');
+  if (v) {
+    v.addEventListener('ended', function() {
+      document.getElementById('video-end-overlay').style.setProperty('display', 'flex', 'important');
+    });
+  }
+});
 
 // Reveal on scroll
 function initReveal() {
