@@ -64,40 +64,8 @@
 <!-- Caveat font async -->
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet"/></noscript>
-<!-- Tailwind CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-tailwind.config = {
-  darkMode: "class",
-  theme: {
-    extend: {
-      colors: {
-        "primary": "#b8860b",
-        "on-primary": "#fff8ee",
-        "primary-container": "#c9960f",
-        "secondary": "#c9960f",
-        "background": "#faf6ef",
-        "surface": "#faf6ef",
-        "surface-container-lowest": "#f5efe3",
-        "surface-container-low": "#ede5d8",
-        "surface-container": "#e8dfd0",
-        "surface-container-high": "#dfd5c4",
-        "surface-container-highest": "#d4c9b6",
-        "surface-variant": "#e8dfd0",
-        "surface-bright": "#ffffff",
-        "on-surface": "#1c1208",
-        "on-surface-variant": "#5a4a38",
-        "outline": "#9c8e80",
-        "outline-variant": "#c9b89a",
-      },
-      fontFamily: {
-        "serif": ["Cormorant Garamond", "Noto Serif", "serif"],
-        "sans": ["Manrope", "system-ui", "sans-serif"],
-      },
-    }
-  }
-}
-</script>
+<!-- Tailwind CSS (lokaal gebouwd, geen CDN) -->
+<link rel="stylesheet" href="assets/tailwind.css"/>
 <style>
   body {
     background-color: #faf6ef;
@@ -353,7 +321,7 @@ tailwind.config = {
 <div class="page active" id="page-home">
   <!-- Hero -->
   <section class="hero-bg relative w-full min-h-screen flex items-start lg:items-center overflow-hidden">
-    <img src="assets/hero-malta-sunset.webp" alt="" class="hero-photo" aria-hidden="true"/>
+    <img src="assets/hero-malta-sunset.webp" alt="" class="hero-photo" aria-hidden="true" width="1376" height="768"/>
     <div class="hero-overlay absolute inset-0"></div>
     <div class="hero-bottom-fade"></div>
     <div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 pb-20 pt-28 lg:pt-0 lg:pb-0 lg:flex lg:items-center">
@@ -382,7 +350,7 @@ tailwind.config = {
         <!-- Cover + play -->
         <div class="relative group cursor-pointer" onclick="playSong('dit-ben-ik')">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl">
-            <img src="assets/dit ben ik.webp" alt="Dit ben ik - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+            <img src="assets/dit-ben-ik.webp" alt="Dit ben ik - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" width="400" height="400"/>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center gold-glow">
                 <span class="material-symbols-outlined text-5xl text-on-primary" style="font-variation-settings:'FILL' 1;">play_arrow</span>
@@ -465,7 +433,7 @@ tailwind.config = {
         <!-- Cover rechts -->
         <div class="order-1 lg:order-2 relative group cursor-pointer" onclick="playSong('jij-bent-vrij')">
           <div class="relative overflow-hidden rounded-2xl shadow-2xl" style="box-shadow: 0 0 80px #f3bc7820, 0 25px 50px rgba(0,0,0,0.5);">
-            <img src="assets/jij-bent-vrij.webp" alt="Jij bent vrij - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"/>
+            <img src="assets/jij-bent-vrij.webp" alt="Jij bent vrij - IRIS" class="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" width="400" height="400"/>
             <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="w-20 h-20 rounded-full flex items-center justify-center" style="background:#f3bc78; box-shadow:0 0 30px #f3bc78;">
                 <span class="material-symbols-outlined text-5xl" style="color:#1a1008; font-variation-settings:'FILL' 1;">play_arrow</span>
@@ -536,7 +504,7 @@ tailwind.config = {
           <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
             <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Juli 2026</time>
             <h3 class="font-serif text-2xl text-on-surface leading-snug">Jij bent vrij, geïnspireerd door Femke</h3>
-            <img src="assets/iris-producer.webp" alt="Iris als producer" class="w-full rounded-xl shadow-md object-cover" loading="lazy"/>
+            <img src="assets/iris-producer.webp" alt="Iris als producer" class="w-full rounded-xl shadow-md object-cover" loading="lazy" width="1536" height="1024"/>
             <p class="text-on-surface-variant leading-relaxed flex-1">De zevende single van IRIS is uit. "Jij bent vrij" is een persoonlijk en emotioneel nummer over de moed om jezelf te zijn. Het werd geïnspireerd door "Vrij" van de destijds 16-jarige Femke, zelf gecomponeerd naar aanleiding van het verhaal van Lena die Luka werd. Met haar debuutsingle wilde Femke transgenders en hun gevoelens uit de taboesfeer bevrijden. Dat lied raakte Iris zo diep, dat ze haar eigen verhaal schreef.</p>
             <div class="flex flex-col gap-3">
               <button onclick="playSong('jij-bent-vrij')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
@@ -556,7 +524,7 @@ tailwind.config = {
             <h3 class="font-serif text-2xl text-on-surface leading-snug">irisduym.be is live, dankzij NovaDesign</h3>
             <p class="text-on-surface-variant leading-relaxed">IRIS heeft nu een eigen thuis op het web. De website werd met veel zorg en passie gebouwd door <strong class="text-on-surface">NovaDesign</strong>. Het resultaat? Een warme, filmische plek die perfect bij de muziek van IRIS past. Heel erg bedankt!</p>
             <a href="https://novadesign.iris-duym.workers.dev/" target="_blank" rel="noopener">
-              <img src="assets/screenshot-novadesign.webp" alt="Screenshot NovaDesign website" class="w-full rounded-xl shadow-md hover:opacity-90 transition-opacity" loading="lazy"/>
+              <img src="assets/screenshot-novadesign.webp" alt="Screenshot NovaDesign website" class="w-full rounded-xl shadow-md hover:opacity-90 transition-opacity" loading="lazy" width="1967" height="1203"/>
             </a>
             <a href="https://novadesign.iris-duym.workers.dev/" target="_blank" rel="noopener" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline flex items-center gap-2">
               <span class="material-symbols-outlined text-base">open_in_new</span>
@@ -568,7 +536,7 @@ tailwind.config = {
           <article class="nieuws-card bg-surface-container border border-outline-variant/20 rounded-2xl p-8 flex flex-col gap-4 hover:border-primary/30 transition-colors shrink-0">
             <time class="text-xs uppercase tracking-widest text-primary/70 font-bold">Binnenkort</time>
             <h3 class="font-serif text-2xl text-on-surface leading-snug">Meer muziek is onderweg</h3>
-            <img src="assets/iris-schrijft.webp" alt="Iris schrijft muziek" class="w-full rounded-xl shadow-md object-cover" loading="lazy"/>
+            <img src="assets/iris-schrijft.webp" alt="Iris schrijft muziek" class="w-full rounded-xl shadow-md object-cover" loading="lazy" width="1024" height="1024"/>
             <p class="text-on-surface-variant leading-relaxed flex-1">IRIS werkt aan nieuwe nummers. Schrijf je in op de nieuwsbrief en wees als eerste op de hoogte wanneer een nieuwe single uitkomt.</p>
             <button onclick="showPage('contact')" class="self-start text-sm font-bold text-primary uppercase tracking-widest hover:underline">
               Schrijf je in →
@@ -683,11 +651,11 @@ tailwind.config = {
       <h3 class="font-serif text-2xl text-on-surface mb-10">Onze sponsors</h3>
       <div class="flex flex-wrap items-center justify-center gap-12 lg:gap-20">
         <a href="https://novadesign.iris-duym.workers.dev/" target="_blank" rel="noopener" class="group flex flex-col items-center gap-3 opacity-80 hover:opacity-100 transition-all hover:scale-105">
-          <img src="assets/logo-novadesign.webp" alt="NovaDesign" class="h-16 object-contain"/>
+          <img src="assets/logo-novadesign.webp" alt="NovaDesign" class="h-16 object-contain" width="3370" height="1248"/>
           <span class="text-xs uppercase tracking-widest text-on-surface-variant/60 group-hover:text-primary transition-colors">Web &amp; Design</span>
         </a>
         <a href="https://ifixit-be.netlify.app/" target="_blank" rel="noopener" class="group flex flex-col items-center gap-3 opacity-80 hover:opacity-100 transition-all hover:scale-105">
-          <img src="assets/logo-ifixit.webp" alt="IfixIT" class="h-16 object-contain"/>
+          <img src="assets/logo-ifixit.webp" alt="IfixIT" class="h-16 object-contain" width="857" height="330"/>
           <span class="text-xs uppercase tracking-widest text-on-surface-variant/60 group-hover:text-primary transition-colors">IT &amp; Reparatie</span>
         </a>
       </div>
@@ -699,7 +667,7 @@ tailwind.config = {
     <div class="max-w-7xl mx-auto px-6 lg:px-16">
       <div class="grid lg:grid-cols-2 gap-14 items-center">
         <div class="relative">
-          <img src="assets/iris-playing.webp" alt="Iris Duym aan de AI-synthesizer" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl" loading="lazy"/>
+          <img src="assets/iris-playing.webp" alt="Iris Duym aan de AI-synthesizer" class="w-full aspect-[4/5] object-cover rounded-2xl shadow-2xl" loading="lazy" width="848" height="1264"/>
           <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
         </div>
         <div>
@@ -859,25 +827,25 @@ tailwind.config = {
     </div>
     <div class="polaroid-stage">
       <div class="polaroid" data-rot="-4" onclick="galOpen(0)">
-        <img src="assets/iris-op-reis.webp" alt="Iris op reis" loading="lazy"/>
+        <img src="assets/iris-op-reis.webp" alt="Iris op reis" loading="lazy" width="900" height="900"/>
       </div>
       <div class="polaroid" data-rot="6" onclick="galOpen(1)">
-        <img src="assets/iris-verjaardag.webp" alt="Verjaardag" loading="lazy"/>
+        <img src="assets/iris-verjaardag.webp" alt="Verjaardag" loading="lazy" width="900" height="900"/>
       </div>
       <div class="polaroid" data-rot="-7" onclick="galOpen(2)">
-        <img src="assets/malta-sunset.webp" alt="Malta zonsondergang" loading="lazy"/>
+        <img src="assets/malta-sunset.webp" alt="Malta zonsondergang" loading="lazy" width="900" height="600"/>
       </div>
       <div class="polaroid" data-rot="3" onclick="galOpen(3)">
-        <img src="assets/iris-in-malaga.webp" alt="Iris in Málaga" loading="lazy"/>
+        <img src="assets/iris-in-malaga.webp" alt="Iris in Málaga" loading="lazy" width="900" height="900"/>
       </div>
       <div class="polaroid" data-rot="-5" onclick="galOpen(4)">
-        <img src="assets/iris-malta.webp" alt="Iris Malta" loading="lazy"/>
+        <img src="assets/iris-malta.webp" alt="Iris Malta" loading="lazy" width="900" height="900"/>
       </div>
       <div class="polaroid" data-rot="8" onclick="galOpen(5)">
-        <img src="assets/iris-op-de-dijk.webp" alt="Iris op de dijk" loading="lazy"/>
+        <img src="assets/iris-op-de-dijk.webp" alt="Iris op de dijk" loading="lazy" width="900" height="900"/>
       </div>
       <div class="polaroid" data-rot="-3" onclick="galOpen(6)">
-        <img src="assets/iris-malta-rocks.webp" alt="Malta rotsen" loading="lazy"/>
+        <img src="assets/iris-malta-rocks.webp" alt="Malta rotsen" loading="lazy" width="900" height="600"/>
       </div>
     </div>
 
@@ -955,7 +923,7 @@ tailwind.config = {
     <!-- Bio: foto + tekst -->
     <div class="grid lg:grid-cols-2 gap-16 items-start mb-24">
       <div class="relative">
-        <img src="assets/iris-bio.webp" alt="Iris Duym schrijft muziek" class="w-full rounded-2xl shadow-2xl object-cover" loading="lazy"/>
+        <img src="assets/iris-bio.webp" alt="Iris Duym schrijft muziek" class="w-full rounded-2xl shadow-2xl object-cover" loading="lazy" width="848" height="1264"/>
         <div class="absolute -bottom-5 -right-5 w-28 h-28 border-b-2 border-r-2 border-primary hidden lg:block rounded-br-2xl"></div>
       </div>
       <div>
