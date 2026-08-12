@@ -23,7 +23,7 @@ function makePage(song) {
 <meta name="description" content="${song.desc}"/>
 <link rel="canonical" href="${baseUrl}/songs/${song.id}/"/>
 
-<!-- Open Graph -->
+<!-- Open Graph — Facebook leest dit VOOR de JS redirect -->
 <meta property="og:type" content="music.song"/>
 <meta property="og:title" content="${song.title} – IRIS"/>
 <meta property="og:description" content="${song.desc}"/>
@@ -40,8 +40,7 @@ function makePage(song) {
 <meta name="twitter:description" content="${song.desc}"/>
 <meta name="twitter:image" content="${baseUrl}/assets/og/${song.id}.jpg"/>
 
-<!-- Redirect naar het nummer op de hoofdsite -->
-<meta http-equiv="refresh" content="0;url=${baseUrl}/#${song.id}"/>
+<!-- JS redirect (Facebook's crawler voert dit NIET uit) -->
 <script>window.location.replace('${baseUrl}/#${song.id}');</script>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
