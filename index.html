@@ -1602,6 +1602,8 @@ function playSong(id) {
   if (idx === -1) return;
   const song = songs[idx];
   currentIdx = idx;
+  // Update URL hash zodat de link deelbaar is
+  history.replaceState(null, '', '#' + id);
 
   if (audio.src.endsWith(song.file) && !audio.paused) {
     audio.pause();
@@ -1803,6 +1805,19 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(initReveal, 200);
   const homeLink = document.querySelector('[data-page="home"]');
   if (homeLink) homeLink.classList.add('active-nav');
+
+  // Deep linking: lees hash uit URL en speel nummer af
+  // Bijv. irisduym.be/#dit-ben-ik opent muziek en speelt het nummer
+  const hash = window.location.hash.replace('#', '').trim();
+  if (hash) {
+    const songIds = songs.map(s => s.id);
+    if (songIds.includes(hash)) {
+      showPage('muziek');
+      setTimeout(() => playSong(hash), 400);
+    } else if (['muziek','gallery','bio','contact'].includes(hash)) {
+      showPage(hash);
+    }
+  }
 });
 </script>
 </body>
