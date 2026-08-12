@@ -52,9 +52,20 @@
   "sameAs": []
 }
 </script>
+<!-- Preconnect for faster font loading -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Google Fonts async (non-render-blocking) -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif:wght@400;500;600&family=Manrope:wght@400;500;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif:wght@400;500;600&family=Manrope:wght@400;500;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet"/></noscript>
+<!-- Material Symbols async (non-render-blocking) -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/></noscript>
+<!-- Caveat font async -->
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap" rel="stylesheet"/></noscript>
+<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif:wght@400;500;600&family=Manrope:wght@400;500;700&family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
 tailwind.config = {
   darkMode: "class",
@@ -149,7 +160,7 @@ tailwind.config = {
   .drawer { transform: translateX(-100%); transition: transform 0.4s cubic-bezier(0.22,1,0.36,1); }
   .drawer.open { transform: translateX(0); }
   /* Polaroid gallery */
-  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap');
+  /* Caveat font loaded async via <link> in <head> */
   .polaroid-stage {
     background: linear-gradient(145deg, #ede5d8 0%, #dfd5c4 100%);
     border-radius: 1.5rem;
