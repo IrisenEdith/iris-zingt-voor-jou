@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Transparantie &amp; AI-gebruik – IRIS</title>
+<meta name="description" content="Hoe IRIS omgaat met AI-hulpmiddelen bij het maken van muziek, teksten en de website. Transparantie conform de EU AI Act."/>
+<link rel="canonical" href="https://irisduym.be/transparantie/"/>
+<meta property="og:title" content="Transparantie &amp; AI-gebruik – IRIS"/>
+<meta property="og:url" content="https://irisduym.be/transparantie/"/>
+<meta property="og:site_name" content="IRIS – Verhalen in Muziek"/>
+<meta property="og:locale" content="nl_BE"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #faf6ef;
+    --surface:   #f0e9df;
+    --border:    #d4c9b6;
+    --text:      #1c1208;
+    --muted:     #6b5e4e;
+    --gold:      #b8860b;
+    --gold-light:#f3bc78;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Top bar */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .brand {
+    font-family: Georgia, serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .back-link {
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--gold); }
+  .back-link svg { flex-shrink: 0; }
+
+  /* Content */
+  main {
+    flex: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 2rem 5rem;
+    width: 100%;
+  }
+
+  .page-label {
+    font-family: Arial, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .intro {
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p {
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  ul {
+    color: var(--muted);
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  li { margin-bottom: 0.4rem; }
+
+  .highlight-box {
+    background: var(--surface);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .highlight-box p {
+    margin-bottom: 0;
+    font-style: italic;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff8ee;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+  }
+
+  .badge.green {
+    background: #4a7c59;
+  }
+
+  /* Footer */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+  footer p {
+    font-family: Arial, sans-serif;
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    main { padding: 2.5rem 1.25rem 4rem; }
+    header { padding: 1rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://irisduym.be/" class="brand">IRIS</a>
+  <a href="https://irisduym.be/" class="back-link">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Terug naar de website
+  </a>
+</header>
+
+<main>
+  <p class="page-label">Transparantie &amp; AI-gebruik</p>
+  <h1>Eerlijk over hoe ik werk</h1>
+  <p class="intro">IRIS staat voor authenticiteit. Daarom wil ik transparant zijn over welke hulpmiddelen ik gebruik, ook als dat AI-tools zijn.</p>
+
+  <section>
+    <h2>Mijn muziek en teksten</h2>
+    <span class="badge green">100% menselijk</span>
+    <p>Alle liedjes, melodieën en songteksten op deze website zijn volledig door mij zelf geschreven en gecomponeerd. Ik gebruik geen AI om muziek of teksten te genereren. Mijn verhalen komen uit mijn eigen ervaringen en emoties.</p>
+    <div class="highlight-box">
+      <p>"Sommige verhalen worden niet geschreven. Ze worden gezongen." Die verhalen zijn van mij, en alleen van mij.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Foto's en afbeeldingen</h2>
+    <span class="badge green">Echte foto's</span>
+    <p>Alle foto's op deze website zijn echte foto's van mij, gemaakt door mezelf of door vrienden en familie. Er worden geen AI-gegenereerde beelden of deepfakes gebruikt.</p>
+    <p>De decoratieve preview-afbeeldingen die op sociale media verschijnen bij het delen van een nummer (de zogenaamde OG-afbeeldingen) zijn samengesteld via een grafisch script dat mijn eigen albumcovers combineert met een opgemaakte achtergrond. Het gaat om geprogrammeerde grafische lay-outs, geen AI-beeldgeneratie.</p>
+  </section>
+
+  <section>
+    <h2>Website en technologie</h2>
+    <span class="badge">AI-assistentie</span>
+    <p>De code en technische opbouw van deze website zijn ontwikkeld met behulp van AI-assistentie (Claude van Anthropic). Dit betekent dat een AI mij heeft geholpen met het schrijven van HTML, CSS en JavaScript, vergelijkbaar met hoe een aannemer gebruik maakt van moderne machines om een huis te bouwen.</p>
+    <p>De inhoud, het design-concept, de teksten en de creatieve richting zijn volledig door mij bepaald. De AI was een technisch hulpmiddel, geen creatieve auteur.</p>
+  </section>
+
+  <section>
+    <h2>Sociale media</h2>
+    <p>Op mijn sociale media (Facebook, Instagram) post ik uitsluitend eigen foto's en eigen teksten. Wanneer ik in de toekomst ooit AI-hulpmiddelen zou gebruiken voor het maken van sociale media content, zal ik dit expliciet vermelden bij de betreffende post.</p>
+  </section>
+
+  <section>
+    <h2>EU AI Act (Artikel 50)</h2>
+    <p>Artikel 50 van de Europese AI-verordening (van kracht sinds 2 augustus 2026) verplicht onder meer:</p>
+    <ul>
+      <li>Melding wanneer gebruikers met een AI-chatbot praten (niet van toepassing, ik heb geen chatbot)</li>
+      <li>Labeling van deepfakes en AI-gegenereerde beelden van echte personen (niet van toepassing, mijn foto's zijn echt)</li>
+      <li>Transparantie over AI-gegenereerde teksten over zaken van publiek belang (niet van toepassing voor een persoonlijke artiestensite)</li>
+    </ul>
+    <p>Hoewel de strikte verplichtingen van Artikel 50 niet rechtstreeks van toepassing zijn op mijn website, kies ik er bewust voor om toch volledige transparantie te bieden over mijn gebruik van AI-hulpmiddelen.</p>
+  </section>
+
+  <section>
+    <h2>Vragen?</h2>
+    <p>Heb je vragen over hoe ik werk of over het gebruik van mijn content? Stuur gerust een mail naar <a href="mailto:iris@irisduym.be" style="color: var(--gold);">iris@irisduym.be</a>.</p>
+  </section>
+
+  <p style="font-family: Arial, sans-serif; font-size: 0.75rem; color: var(--border); margin-top: 3rem;">Laatste update: augustus 2026</p>
+</main>
+
+<footer>
+  <p>
+    <a href="https://irisduym.be/">IRIS – Verhalen in Muziek</a> &nbsp;&middot;&nbsp;
+    <a href="mailto:iris@irisduym.be">iris@irisduym.be</a>
+  </p>
+</footer>
+
+</body>
+</html>
