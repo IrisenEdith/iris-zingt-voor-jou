@@ -267,11 +267,11 @@
 
   <!-- Desktop Nav -->
   <nav class="hidden lg:flex items-center gap-8">
-    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('home')" data-page="home">Home</a>
-    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('muziek')" data-page="muziek">Muziek</a>
-    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('gallery')" data-page="gallery">Gallery</a>
-    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('bio')" data-page="bio">Bio</a>
-    <a class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('contact')" data-page="contact">Contact</a>
+    <a href="/#home" class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('home');return false;" data-page="home">Home</a>
+    <a href="/#muziek" class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('muziek');return false;" data-page="muziek">Muziek</a>
+    <a href="/#gallery" class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('gallery');return false;" data-page="gallery">Gallery</a>
+    <a href="/#bio" class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('bio');return false;" data-page="bio">Bio</a>
+    <a href="/#contact" class="nav-link text-xs uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors cursor-pointer" onclick="showPage('contact');return false;" data-page="contact">Contact</a>
   </nav>
 
   <!-- Social Icons Desktop -->
@@ -306,11 +306,11 @@
     <button onclick="toggleDrawer()" class="text-on-surface-variant"><span class="material-symbols-outlined">close</span></button>
   </div>
   <nav class="flex flex-col gap-7">
-    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('home')"><span class="material-symbols-outlined text-primary">home</span>Home</a>
-    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('muziek')"><span class="material-symbols-outlined text-primary">album</span>Muziek</a>
-    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('gallery')"><span class="material-symbols-outlined text-primary">photo_library</span>Gallery</a>
-    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('bio')"><span class="material-symbols-outlined text-primary">person</span>Bio</a>
-    <a class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('contact')"><span class="material-symbols-outlined text-primary">mail</span>Contact</a>
+    <a href="/#home" class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('home');return false;"><span class="material-symbols-outlined text-primary">home</span>Home</a>
+    <a href="/#muziek" class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('muziek');return false;"><span class="material-symbols-outlined text-primary">album</span>Muziek</a>
+    <a href="/#gallery" class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('gallery');return false;"><span class="material-symbols-outlined text-primary">photo_library</span>Gallery</a>
+    <a href="/#bio" class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('bio');return false;"><span class="material-symbols-outlined text-primary">person</span>Bio</a>
+    <a href="/#contact" class="font-serif text-2xl text-on-surface-variant hover:text-primary transition-colors cursor-pointer flex items-center gap-4" onclick="showPage('contact');return false;"><span class="material-symbols-outlined text-primary">mail</span>Contact</a>
   </nav>
   <div class="mt-auto flex gap-5">
     <a href="https://www.facebook.com/IRISbyIrisDuym" target="_blank" rel="noopener" aria-label="Facebook" class="transition-opacity hover:opacity-70" style="color:#1877F2;"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.41 18.63 0 12 0S0 5.41 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.88v2.27h3.32l-.53 3.49h-2.79V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
@@ -753,10 +753,10 @@
           </div>
           <div class="flex flex-col gap-3">
             <span class="text-primary text-xs uppercase tracking-[0.2em] font-bold">Navigatie</span>
-            <a onclick="showPage('muziek')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Muziek</a>
-            <a onclick="showPage('gallery')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Gallery</a>
-            <a onclick="showPage('bio')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Bio</a>
-            <a onclick="showPage('contact')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Contact</a>
+            <a href="/#muziek" onclick="showPage('muziek');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Muziek</a>
+            <a href="/#gallery" onclick="showPage('gallery');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Gallery</a>
+            <a href="/#bio" onclick="showPage('bio');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Bio</a>
+            <a href="/#contact" onclick="showPage('contact');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Contact</a>
           </div>
         </div>
       </div>
@@ -1775,16 +1775,16 @@ const footerHTML = `
         </div>
         <div class="flex flex-col gap-3">
           <span class="text-primary text-xs uppercase tracking-[0.2em] font-bold">Navigatie</span>
-          <a onclick="showPage('muziek')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Muziek</a>
-          <a onclick="showPage('gallery')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Gallery</a>
-          <a onclick="showPage('bio')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Bio</a>
-          <a onclick="showPage('contact')" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Contact</a>
+          <a href="/#muziek" onclick="showPage('muziek');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Muziek</a>
+          <a href="/#gallery" onclick="showPage('gallery');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Gallery</a>
+          <a href="/#bio" onclick="showPage('bio');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Bio</a>
+          <a href="/#contact" onclick="showPage('contact');return false;" class="text-on-surface-variant hover:text-primary transition-colors text-xs uppercase tracking-wider cursor-pointer">Contact</a>
         </div>
       </div>
     </div>
     <div class="pt-10 border-t border-outline-variant/20 space-y-4 text-center lg:text-left">
       <p class="text-on-surface-variant/60 text-base italic max-w-2xl mx-auto lg:mx-0">Alle muziek, teksten, afbeeldingen en ontwerpen op deze website zijn met liefde gecreëerd door IRIS. Respecteer dit werk en gebruik het niet zonder voorafgaande toestemming.</p>
-      <p class="text-on-surface-variant/60 text-base italic mx-auto lg:mx-0">Graag samenwerken? <a onclick="showPage('contact')" class="text-primary/60 hover:text-primary transition-colors cursor-pointer">Contacteer mij.</a></p>
+      <p class="text-on-surface-variant/60 text-base italic mx-auto lg:mx-0">Graag samenwerken? <a href="/#contact" onclick="showPage('contact');return false;" class="text-primary/60 hover:text-primary transition-colors cursor-pointer">Contacteer mij.</a></p>
       <div class="flex flex-col lg:flex-row justify-between items-center gap-4">
         <p class="text-on-surface-variant/60 text-sm uppercase tracking-widest">© 2026 IRIS STUDIO · Alle rechten voorbehouden</p>
         <a href="mailto:iris@irisduym.be" class="text-primary/80 hover:text-primary text-2xl font-serif transition-colors">iris@irisduym.be</a>
