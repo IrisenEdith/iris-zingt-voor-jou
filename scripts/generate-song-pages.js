@@ -21,6 +21,7 @@ function makePage(song) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>${song.title} – IRIS | Verhalen in Muziek</title>
 <meta name="description" content="${song.desc}"/>
+<meta name="robots" content="noindex, follow"/>
 <link rel="canonical" href="${baseUrl}/songs/${song.id}/"/>
 
 <!-- Open Graph — Facebook leest dit VOOR de JS redirect -->
